@@ -25,6 +25,7 @@ const Footer = () => {
   const { data: socialLinks } = useSupabaseData('social_links', {
     orderBy: 'display_order',
   });
+  const { data: aboutData } = useSupabaseData('about', { single: true, orderBy: 'created_at' });
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -41,10 +42,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-display font-bold text-silk mb-3">AK</h3>
+            <h3 className="text-2xl font-display font-bold text-silk mb-3">{aboutData?.brand_name || 'AK'}</h3>
             <p className="text-canvas/80 font-body text-sm leading-relaxed max-w-xs">
-              Full-Stack Developer crafting beautiful, functional web experiences with
-              modern technologies and a passion for clean code.
+              {aboutData?.hero_description || 'Full-Stack Developer crafting beautiful, functional web experiences with modern technologies and a passion for clean code.'}
             </p>
           </div>
 

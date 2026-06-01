@@ -6,6 +6,12 @@ import { Link } from 'react-router-dom';
 const HeroSection = ({ aboutData }) => {
   const name = aboutData?.name || 'Ashwani Kumar';
   const resumeUrl = aboutData?.resume_url;
+  
+  const rawRoles = aboutData?.hero_roles || 'Full Stack Developer, UI/UX Designer, Open Source Contributor, Software Architect';
+  // Parse comma separated string into array, intercalating with 2000 delay for TypeAnimation
+  const sequence = rawRoles.split(',').map(role => role.trim()).flatMap(role => [role, 2000]);
+  
+  const description = aboutData?.hero_description || 'I craft beautiful, performant web applications with modern technologies. Passionate about clean code, great design, and solving complex problems.';
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -84,16 +90,7 @@ const HeroSection = ({ aboutData }) => {
             className="mb-8"
           >
             <TypeAnimation
-              sequence={[
-                'Full Stack Developer',
-                2000,
-                'UI/UX Designer',
-                2000,
-                'Open Source Contributor',
-                2000,
-                'Software Architect',
-                2000,
-              ]}
+              sequence={sequence}
               speed={50}
               repeat={Infinity}
               className="text-xl sm:text-2xl lg:text-3xl text-ember font-body font-semibold"
@@ -107,8 +104,7 @@ const HeroSection = ({ aboutData }) => {
             transition={{ duration: 0.6, delay: 1 }}
             className="text-timber font-body text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            I craft beautiful, performant web applications with modern technologies.
-            Passionate about clean code, great design, and solving complex problems.
+            {description}
           </motion.p>
 
           {/* CTA Buttons */}

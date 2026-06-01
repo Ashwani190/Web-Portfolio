@@ -7,12 +7,18 @@
 create table about (
   id uuid default gen_random_uuid() primary key,
   name text not null,
+  brand_name text default 'AK',
   tagline text,
+  hero_roles text default 'Full Stack Developer, UI/UX Designer, Open Source Contributor',
+  hero_description text default 'I craft beautiful, performant web applications with modern technologies. Passionate about clean code, great design, and solving complex problems.',
   bio text,
   profile_image_url text,
   resume_url text,
   email text,
+  phone_number text,
   location text,
+  experience_years text default '3+',
+  created_at timestamptz default now(),
   updated_at timestamptz default now()
 );
 

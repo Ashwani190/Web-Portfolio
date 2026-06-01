@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { useSupabaseData } from '../../hooks/useSupabaseData';
+import ContactModal from '../shared/ContactModal';
 
 const navLinks = [
   { path: '/skills', label: 'Skills' },
@@ -14,7 +16,9 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
   const location = useLocation();
+  const { data: aboutData } = useSupabaseData('about', { single: true, orderBy: 'created_at' });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -46,7 +50,7 @@ const Navbar = () => {
             className="relative group"
           >
             <span className="text-2xl font-display font-bold text-cocoa tracking-tight">
-              AK
+              {aboutData?.brand_name || 'AK'}
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-ember transition-all duration-300 group-hover:w-full" />
           </Link>
@@ -77,13 +81,13 @@ const Navbar = () => {
 
           {/* CTA + Mobile Toggle */}
           <div className="flex items-center gap-3">
-            <Link
-              to="/#contact"
+            <button
+              onClick={() => setContactModalOpen(true)}
               className="hidden sm:inline-flex btn-primary text-sm"
             >
               Hire Me
               <ArrowUpRight size={16} />
-            </Link>
+            </button>
 
             {/* Mobile hamburger */}
             <button
@@ -154,19 +158,21 @@ const Navbar = () => {
 
                 {/* Mobile CTA */}
                 <div className="mt-auto pt-6">
-                  <Link
-                    to="/#contact"
+                  <button
+                    onClick={() => { setMobileOpen(false); setContactModalOpen(true); }}
                     className="btn-primary w-full justify-center"
                   >
                     Hire Me
                     <ArrowUpRight size={16} />
-                  </Link>
+                  </button>
                 </div>
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
+
+      <ContactModal isOpen={contactModalOpen} onClose={() => setContactModalOpen(false)} />
     </>
   );
 };

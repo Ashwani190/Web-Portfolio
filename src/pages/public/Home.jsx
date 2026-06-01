@@ -39,7 +39,7 @@ const Home = () => {
         setStats({
           projects: projectsRes.data?.length || 0,
           certifications: certsRes.data?.length || 0,
-          years: '3+',
+          years: aboutRes.data?.experience_years || '3+',
         });
       } catch (err) {
         console.error('Error fetching home data:', err);

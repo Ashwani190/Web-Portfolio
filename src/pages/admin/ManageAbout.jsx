@@ -18,12 +18,17 @@ const ManageAbout = () => {
   const [formData, setFormData] = useState({
     id: null,
     name: '',
+    brand_name: 'AK',
+    hero_roles: 'Full Stack Developer, UI/UX Designer, Open Source Contributor',
+    hero_description: 'I craft beautiful, performant web applications with modern technologies. Passionate about clean code, great design, and solving complex problems.',
     tagline: '',
     bio: '',
     profile_image_url: '',
     resume_url: '',
     email: '',
+    phone_number: '',
     location: '',
+    experience_years: '3+',
   });
 
   useEffect(() => {
@@ -160,6 +165,76 @@ const ManageAbout = () => {
                         placeholder="San Francisco, CA"
                       />
                     </div>
+                    
+                    {/* Brand Name */}
+                    <div className="space-y-2">
+                      <label htmlFor="brand_name" className="text-sm font-body font-medium text-cocoa block">Brand Name (Navbar/Footer)</label>
+                      <input
+                        id="brand_name"
+                        name="brand_name"
+                        type="text"
+                        value={formData.brand_name || ''}
+                        onChange={handleChange}
+                        className="input-field bg-white"
+                        placeholder="AK"
+                      />
+                    </div>
+
+                    {/* Phone Number */}
+                    <div className="space-y-2">
+                      <label htmlFor="phone_number" className="text-sm font-body font-medium text-cocoa block">Phone Number</label>
+                      <input
+                        id="phone_number"
+                        name="phone_number"
+                        type="tel"
+                        value={formData.phone_number || ''}
+                        onChange={handleChange}
+                        className="input-field bg-white"
+                        placeholder="+1 (555) 123-4567"
+                      />
+                    </div>
+
+                    {/* Experience Years */}
+                    <div className="space-y-2">
+                      <label htmlFor="experience_years" className="text-sm font-body font-medium text-cocoa block">Years of Experience (Stats)</label>
+                      <input
+                        id="experience_years"
+                        name="experience_years"
+                        type="text"
+                        value={formData.experience_years || ''}
+                        onChange={handleChange}
+                        className="input-field bg-white"
+                        placeholder="3+"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Hero Section Roles */}
+                  <div className="space-y-2 mb-6">
+                    <label htmlFor="hero_roles" className="text-sm font-body font-medium text-cocoa block">Hero Roles (Comma separated, for typewriter effect)</label>
+                    <input
+                      id="hero_roles"
+                      name="hero_roles"
+                      type="text"
+                      value={formData.hero_roles || ''}
+                      onChange={handleChange}
+                      className="input-field bg-white"
+                      placeholder="Full Stack Developer, UI/UX Designer"
+                    />
+                  </div>
+
+                  {/* Hero Description */}
+                  <div className="space-y-2 mb-6">
+                    <label htmlFor="hero_description" className="text-sm font-body font-medium text-cocoa block">Hero Description</label>
+                    <textarea
+                      id="hero_description"
+                      name="hero_description"
+                      rows={3}
+                      value={formData.hero_description || ''}
+                      onChange={handleChange}
+                      className="input-field bg-white resize-y"
+                      placeholder="I craft beautiful, performant web applications..."
+                    />
                   </div>
 
                   {/* Bio */}
