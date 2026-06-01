@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --silk: #feeee1;
+  --canvas: #d9bfa8;
+  --burlap: #bc9d71;
+  --timber: #79553d;
+  --ember: #80370c;
+  --cocoa: #360800;
+}
+
+/* ===== BASE STYLES ===== */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background-color: var(--silk);
+    color: var(--cocoa);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+  }
+
+  h3 {
+    font-size: clamp(1.3rem, 3vw, 1.75rem);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  ::selection {
+    background-color: var(--ember);
+    color: var(--silk);
+  }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--silk);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--burlap);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--timber);
+}
+
+/* ===== COMPONENT STYLES ===== */
+@layer components {
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto w-full;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-ember text-silk font-body font-semibold rounded-lg transition-all duration-300 hover:bg-cocoa hover:shadow-warm-md active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-ember/50 focus:ring-offset-2 focus:ring-offset-silk;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-cocoa text-cocoa font-body font-semibold rounded-lg transition-all duration-300 hover:bg-cocoa hover:text-silk hover:shadow-warm-md active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-cocoa/50 focus:ring-offset-2 focus:ring-offset-silk;
+  }
+
+  .card {
+    @apply bg-white/60 backdrop-blur-sm rounded-2xl border border-canvas/50 shadow-warm-sm transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:shadow-warm-lg hover:-translate-y-1;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-silk border border-canvas rounded-lg font-body text-cocoa placeholder:text-burlap transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ember/30 focus:border-ember;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-mono font-medium bg-canvas/50 text-timber border border-canvas;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-ember to-cocoa bg-clip-text text-transparent;
+  }
+
+  .glass {
+    @apply bg-silk/80 backdrop-blur-md border border-canvas/30;
+  }
+}
+
+/* ===== UTILITY STYLES ===== */
+@layer utilities {
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+/* ===== MARKDOWN EDITOR OVERRIDES ===== */
+.w-md-editor {
+  --color-fg-default: var(--cocoa) !important;
+  --color-canvas-default: var(--silk) !important;
+  border-color: var(--canvas) !important;
+  border-radius: 0.75rem !important;
+}
+
+/* ===== SYNTAX HIGHLIGHTING OVERRIDES ===== */
+.blog-content pre {
+  border-radius: 0.75rem !important;
+  border: 1px solid var(--canvas) !important;
+}
+
+.blog-content code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: var(--cocoa);
+}
+
+.blog-content p {
+  margin-bottom: 1em;
+  line-height: 1.8;
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+.blog-content blockquote {
+  border-left: 4px solid var(--ember);
+  padding-left: 1em;
+  margin: 1em 0;
+  color: var(--timber);
+  font-style: italic;
+}
+
+.blog-content a {
+  color: var(--ember);
+  text-decoration: underline;
+}
+
+.blog-content img {
+  border-radius: 0.75rem;
+  margin: 1.5em 0;
+}
