@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Heart, ArrowUp } from 'lucide-react';
+import { Heart, ArrowUp, Globe, Mail } from 'lucide-react';
 import { Github, Linkedin, Twitter } from '../shared/SocialIcons';
 import { useSupabaseData } from '../../hooks/useSupabaseData';
 
@@ -8,6 +8,8 @@ const iconMap = {
   Github, GitHub: Github,
   Linkedin, LinkedIn: Linkedin,
   Twitter,
+  Globe,
+  Mail,
 };
 
 const quickLinks = [
@@ -71,7 +73,7 @@ const Footer = () => {
             </h4>
             <div className="flex gap-3">
               {socialLinks?.map((link) => {
-                const Icon = iconMap[link.icon_name] || Github;
+                const Icon = iconMap[link.icon_name] || Globe;
                 return (
                   <motion.a
                     key={link.id}

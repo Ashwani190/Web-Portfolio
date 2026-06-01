@@ -71,8 +71,21 @@ const ManageSocialLinks = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editingItem) await update(editingItem.id, formData);
-    else await create({ ...formData, display_order: data.length });
+    
+    // Auto-detect icon if it's still Globe (the default) or if we want to be helpful
+    let finalIconName = formData.icon_name;
+    const searchString = `${formData.platform} ${formData.url}`.toLowerCase();
+    
+    if (searchString.includes('linkedin')) finalIconName = 'Linkedin';
+    else if (searchString.includes('github')) finalIconName = 'Github';
+    else if (searchString.includes('twitter') || searchString.includes('x.com')) finalIconName = 'Twitter';
+    else if (searchString.includes('mailto:') || searchString.includes('email')) finalIconName = 'Mail';
+    
+    const finalData = { ...formData, icon_name: finalIconName };
+    
+    if (editingItem) await update(editingItem.id, finalData);
+    else await create({ ...finalData, display_order: data.length });
+    
     setIsFormOpen(false);
     refetch();
   };
