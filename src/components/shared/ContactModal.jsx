@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Mail, Phone, Linkedin, ArrowRight } from 'lucide-react';
+import { X, Mail, Phone, ArrowRight } from 'lucide-react';
+import { Linkedin } from './SocialIcons';
 import { useSupabaseData } from '../../hooks/useSupabaseData';
 
 const ContactModal = ({ isOpen, onClose }) => {
