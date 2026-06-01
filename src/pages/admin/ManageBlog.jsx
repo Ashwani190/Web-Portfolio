@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Plus, Edit2, Trash2, Eye, EyeOff } from 'lucide-react';
+import { Plus, Edit2, Trash2, Eye, EyeOff, File } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import AdminSidebar from '../../components/admin/AdminSidebar';
@@ -98,7 +98,7 @@ const ManageBlog = () => {
               <div className="flex justify-between mb-8"><h2 className="text-2xl font-display font-bold text-cocoa">Blog Posts</h2><button onClick={() => handleOpenForm()} className="btn-primary"><Plus size={18} /> New Post</button></div>
               
               {loading ? <LoadingSpinner /> : data.length === 0 ? (
-                <div className="text-center py-20 bg-white rounded-2xl border border-dashed"><FileText className="mx-auto mb-4 text-canvas/60" size={48} /><p>No posts yet.</p></div>
+                <div className="text-center py-20 bg-white rounded-2xl border border-dashed"><File className="mx-auto mb-4 text-canvas/60" size={48} /><p>No posts yet.</p></div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {data.map(post => (

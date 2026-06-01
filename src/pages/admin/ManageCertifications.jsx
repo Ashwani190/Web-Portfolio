@@ -6,7 +6,7 @@ import {
   arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, useSortable
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Plus, GripVertical, Edit2, Trash2, Award } from 'lucide-react';
+import { Plus, GripVertical, Edit2, Trash2, Award, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import AdminSidebar from '../../components/admin/AdminSidebar';
@@ -201,7 +201,7 @@ const ManageCertifications = () => {
               </>
             )}
           </AnimatePresence>
-          <ConfirmModal isOpen={!!itemToDelete} onClose={() => setItemToDelete(null)} onConfirm={handleDelete => { remove(itemToDelete.id).then(() => { setItemToDelete(null); refetch(); }) }} title="Delete Cert" loading={saving} />
+          <ConfirmModal isOpen={!!itemToDelete} onClose={() => setItemToDelete(null)} onConfirm={() => { remove(itemToDelete.id).then(() => { setItemToDelete(null); refetch(); }) }} title="Delete Cert" loading={saving} />
         </main>
       </div>
     </div>

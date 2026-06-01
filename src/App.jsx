@@ -1,38 +1,42 @@
 import { AuthProvider } from './context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import AppRouter from './router/AppRouter';
+import ErrorBoundary from './components/shared/ErrorBoundary';
 
 function App() {
   return (
-    <AuthProvider>
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          duration: 4000,
-          style: {
-            background: '#360800',
-            color: '#feeee1',
-            fontFamily: '"DM Sans", system-ui, sans-serif',
-            borderRadius: '12px',
-            padding: '12px 16px',
-          },
-          success: {
-            iconTheme: {
-              primary: '#80370c',
-              secondary: '#feeee1',
+    <ErrorBoundary>
+      <AuthProvider>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              background: '#360800',
+              color: '#feeee1',
+              fontFamily: '"DM Sans", system-ui, sans-serif',
+              borderRadius: '12px',
+              padding: '12px 16px',
             },
-          },
-          error: {
-            iconTheme: {
-              primary: '#dc2626',
-              secondary: '#feeee1',
+            success: {
+              iconTheme: {
+                primary: '#80370c',
+                secondary: '#feeee1',
+              },
             },
-          },
-        }}
-      />
-      <AppRouter />
-    </AuthProvider>
+            error: {
+              iconTheme: {
+                primary: '#dc2626',
+                secondary: '#feeee1',
+              },
+            },
+          }}
+        />
+        <AppRouter />
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 
 export default App;
+

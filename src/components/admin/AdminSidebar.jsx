@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  LayoutDashboard, User, Code2, FolderKanban, 
+  LayoutDashboard, User, Code, Folder, 
   Award, GraduationCap, Trophy, FileText, 
   Share2, LogOut, X, Menu
 } from 'lucide-react';
@@ -12,8 +12,8 @@ import { useIsMobile } from '../../hooks/useMediaQuery';
 const sidebarLinks = [
   { path: '/admin', label: 'Dashboard', icon: LayoutDashboard },
   { path: '/admin/about', label: 'About Me', icon: User },
-  { path: '/admin/skills', label: 'Skills', icon: Code2 },
-  { path: '/admin/projects', label: 'Projects', icon: FolderKanban },
+  { path: '/admin/skills', label: 'Skills', icon: Code },
+  { path: '/admin/projects', label: 'Projects', icon: Folder },
   { path: '/admin/certifications', label: 'Certifications', icon: Award },
   { path: '/admin/education', label: 'Education', icon: GraduationCap },
   { path: '/admin/achievements', label: 'Achievements', icon: Trophy },

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FolderKanban, Award, GraduationCap, Trophy, FileText, Code2, Users } from 'lucide-react';
+import { Folder, Award, GraduationCap, Trophy, File, Code, Users } from 'lucide-react';
 import { supabase } from '../../lib/supabaseClient';
 import AdminSidebar from '../../components/admin/AdminSidebar';
 import AdminNavbar from '../../components/admin/AdminNavbar';
@@ -52,9 +52,9 @@ const AdminDashboard = () => {
   }, []);
 
   const statCards = stats ? [
-    { label: 'Projects', value: stats.projects, icon: FolderKanban, color: 'text-blue-500', bg: 'bg-blue-50' },
-    { label: 'Skills', value: stats.skills, icon: Code2, color: 'text-indigo-500', bg: 'bg-indigo-50' },
-    { label: 'Blog Posts', value: stats.blog, icon: FileText, color: 'text-emerald-500', bg: 'bg-emerald-50' },
+    { label: 'Projects', value: stats.projects, icon: Folder, color: 'text-blue-500', bg: 'bg-blue-50' },
+    { label: 'Skills', value: stats.skills, icon: Code, color: 'text-indigo-500', bg: 'bg-indigo-50' },
+    { label: 'Blog Posts', value: stats.blog, icon: File, color: 'text-emerald-500', bg: 'bg-emerald-50' },
     { label: 'Certifications', value: stats.certs, icon: Award, color: 'text-amber-500', bg: 'bg-amber-50' },
     { label: 'Education', value: stats.edu, icon: GraduationCap, color: 'text-purple-500', bg: 'bg-purple-50' },
     { label: 'Achievements', value: stats.achieve, icon: Trophy, color: 'text-rose-500', bg: 'bg-rose-50' },

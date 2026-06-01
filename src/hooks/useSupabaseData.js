@@ -65,12 +65,32 @@ export const useSupabaseData = (table, options = {}) => {
 
       const { data: result, error: queryError } = await query;
 
-      if (queryError) throw queryError;
+      if (queryError) {
+        // If ordering by a non-existent column, retry without ordering
+        if (queryError.message?.includes('column') || queryError.code === '42703') {
+          let retryQuery = supabase.from(table).select(select);
+          Object.entries(filters).forEach(([key, value]) => {
+            if (value !== undefined && value !== null && value !== '') {
+              retryQuery = retryQuery.eq(key, value);
+            }
+          });
+          if (limit) retryQuery = retryQuery.limit(limit);
+          if (single) retryQuery = retryQuery.single();
+          
+          const { data: retryResult, error: retryError } = await retryQuery;
+          if (retryError) throw retryError;
+          setData(retryResult ?? (single ? null : []));
+          return;
+        }
+        throw queryError;
+      }
 
-      setData(result);
+      setData(result ?? (single ? null : []));
     } catch (err) {
       setError(err.message);
       console.error(`Error fetching ${table}:`, err);
+      // Ensure data is always safe so components don't crash
+      if (!single) setData([]);
     } finally {
       setLoading(false);
     }

@@ -6,7 +6,7 @@ import {
   arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, useSortable
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Plus, GripVertical, Edit2, Trash2, ExternalLink, Image as ImageIcon, Star } from 'lucide-react';
+import { Plus, GripVertical, Edit2, Trash2, ExternalLink, Image as ImageIcon, Star, X, Folder } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import AdminSidebar from '../../components/admin/AdminSidebar';
@@ -138,6 +138,14 @@ const ManageProjects = () => {
     refetch();
   };
 
+  const handleDelete = async () => {
+    if (itemToDelete) {
+      await remove(itemToDelete.id);
+      setItemToDelete(null);
+      refetch();
+    }
+  };
+
   const handleAddTech = (e) => {
     if (e.key === 'Enter' && techInput.trim()) {
       e.preventDefault();
@@ -176,7 +184,7 @@ const ManageProjects = () => {
                 <LoadingSpinner />
               ) : projects.length === 0 ? (
                 <div className="text-center py-20 bg-white rounded-2xl border border-canvas/40 border-dashed">
-                  <FolderKanban className="mx-auto mb-4 text-canvas/60" size={48} />
+                  <Folder className="mx-auto mb-4 text-canvas/60" size={48} />
                   <p className="text-timber font-body">No projects added yet.</p>
                 </div>
               ) : (

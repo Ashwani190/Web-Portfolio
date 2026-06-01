@@ -132,18 +132,54 @@ create policy "Public can read achievements" on achievements for select using (t
 create policy "Public can read published blog posts" on blog_posts for select using (is_published = true);
 create policy "Public can read social links" on social_links for select using (true);
 
--- ADMIN WRITE POLICIES (only authenticated admin user can write)
-create policy "Admin can manage about" on about for all using (auth.role() = 'authenticated');
-create policy "Admin can manage skills" on skills for all using (auth.role() = 'authenticated');
-create policy "Admin can manage projects" on projects for all using (auth.role() = 'authenticated');
-create policy "Admin can manage certifications" on certifications for all using (auth.role() = 'authenticated');
-create policy "Admin can manage education" on education for all using (auth.role() = 'authenticated');
-create policy "Admin can manage achievements" on achievements for all using (auth.role() = 'authenticated');
-create policy "Admin can manage blog posts" on blog_posts for all using (auth.role() = 'authenticated');
-create policy "Admin can manage social links" on social_links for all using (auth.role() = 'authenticated');
+-- ADMIN WRITE POLICIES (only authenticated user can insert/update/delete)
+create policy "Admin can insert about" on about for insert with check (auth.role() = 'authenticated');
+create policy "Admin can update about" on about for update using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "Admin can delete about" on about for delete using (auth.role() = 'authenticated');
+
+create policy "Admin can insert skills" on skills for insert with check (auth.role() = 'authenticated');
+create policy "Admin can update skills" on skills for update using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "Admin can delete skills" on skills for delete using (auth.role() = 'authenticated');
+
+create policy "Admin can insert projects" on projects for insert with check (auth.role() = 'authenticated');
+create policy "Admin can update projects" on projects for update using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "Admin can delete projects" on projects for delete using (auth.role() = 'authenticated');
+
+create policy "Admin can insert certifications" on certifications for insert with check (auth.role() = 'authenticated');
+create policy "Admin can update certifications" on certifications for update using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "Admin can delete certifications" on certifications for delete using (auth.role() = 'authenticated');
+
+create policy "Admin can insert education" on education for insert with check (auth.role() = 'authenticated');
+create policy "Admin can update education" on education for update using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "Admin can delete education" on education for delete using (auth.role() = 'authenticated');
+
+create policy "Admin can insert achievements" on achievements for insert with check (auth.role() = 'authenticated');
+create policy "Admin can update achievements" on achievements for update using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "Admin can delete achievements" on achievements for delete using (auth.role() = 'authenticated');
+
+create policy "Admin can insert blog_posts" on blog_posts for insert with check (auth.role() = 'authenticated');
+create policy "Admin can update blog_posts" on blog_posts for update using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "Admin can delete blog_posts" on blog_posts for delete using (auth.role() = 'authenticated');
+
+create policy "Admin can insert social_links" on social_links for insert with check (auth.role() = 'authenticated');
+create policy "Admin can update social_links" on social_links for update using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "Admin can delete social_links" on social_links for delete using (auth.role() = 'authenticated');
 
 -- ============================================
 -- STORAGE
 -- ============================================
 -- Create a public bucket named 'portfolio-assets' in:
 -- Supabase Dashboard → Storage → New Bucket → Name: portfolio-assets → Public: true
+--
+-- Then add a storage policy to allow authenticated users to upload:
+-- Go to Storage → Policies → New Policy on 'portfolio-assets' bucket:
+--   Policy name: "Allow authenticated uploads"
+--   Allowed operation: INSERT
+--   Target roles: authenticated
+--   WITH CHECK expression: true
+--
+-- And a policy to allow public reads:
+--   Policy name: "Allow public reads"
+--   Allowed operation: SELECT
+--   Target roles: public
+--   USING expression: true

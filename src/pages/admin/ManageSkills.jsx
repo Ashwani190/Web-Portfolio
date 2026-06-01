@@ -15,7 +15,7 @@ import {
   useSortable
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Plus, GripVertical, Edit2, Trash2 } from 'lucide-react';
+import { Plus, GripVertical, Edit2, Trash2, X, Code } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import AdminSidebar from '../../components/admin/AdminSidebar';
@@ -199,7 +199,7 @@ const ManageSkills = () => {
                 <LoadingSpinner />
               ) : skills.length === 0 ? (
                 <div className="text-center py-20 bg-white rounded-2xl border border-canvas/40 border-dashed">
-                  <Code2 className="mx-auto mb-4 text-canvas/60" size={48} />
+                  <Code className="mx-auto mb-4 text-canvas/60" size={48} />
                   <p className="text-timber font-body">No skills added yet.</p>
                 </div>
               ) : (
