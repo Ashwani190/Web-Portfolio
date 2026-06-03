@@ -101,11 +101,23 @@ const ManageSkills = () => {
   
   const [formData, setFormData] = useState({
     name: '',
-    category: 'Frontend',
+    category: 'Programming Languages',
     proficiency: 80,
   });
 
-  const categories = ['Frontend', 'Backend', 'DevOps', 'Tools', 'Languages'];
+  const categories = [
+    'Programming Languages',
+    'Frontend Development',
+    'Backend Development',
+    'Databases',
+    'DevOps & Cloud',
+    'Cybersecurity',
+    'AI & Machine Learning',
+    'Mobile Development',
+    'Testing & QA',
+    'Tools',
+    'Platforms',
+  ];
 
   const { data: skills, loading, refetch, setData: setSkills } = useSupabaseData('skills');
   const { create, update, remove, updateOrder, saving } = useSupabaseCRUD('skills');
@@ -138,7 +150,7 @@ const ManageSkills = () => {
       });
     } else {
       setEditingItem(null);
-      setFormData({ name: '', category: 'Frontend', proficiency: 80 });
+      setFormData({ name: '', category: 'Programming Languages', proficiency: 80 });
     }
     setIsFormOpen(true);
   };

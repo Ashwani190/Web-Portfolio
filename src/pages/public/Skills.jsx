@@ -6,7 +6,20 @@ import LoadingSpinner from '../../components/shared/LoadingSpinner';
 import { useSupabaseData } from '../../hooks/useSupabaseData';
 import { staggerContainer, staggerItem } from '../../hooks/useScrollAnimation';
 
-const categories = ['All', 'Frontend', 'Backend', 'DevOps', 'Tools', 'Languages'];
+const categories = [
+  'All',
+  'Programming Languages',
+  'Frontend Development',
+  'Backend Development',
+  'Databases',
+  'DevOps & Cloud',
+  'Cybersecurity',
+  'AI & Machine Learning',
+  'Mobile Development',
+  'Testing & QA',
+  'Tools',
+  'Platforms',
+];
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState('All');

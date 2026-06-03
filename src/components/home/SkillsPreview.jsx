@@ -5,7 +5,20 @@ import { ArrowRight } from 'lucide-react';
 import SectionHeading from '../shared/SectionHeading';
 import { staggerContainer, staggerItem } from '../../hooks/useScrollAnimation';
 
-const categories = ['All', 'Frontend', 'Backend', 'DevOps', 'Tools', 'Languages'];
+const categories = [
+  'All',
+  'Programming Languages',
+  'Frontend Development',
+  'Backend Development',
+  'Databases',
+  'DevOps & Cloud',
+  'Cybersecurity',
+  'AI & Machine Learning',
+  'Mobile Development',
+  'Testing & QA',
+  'Tools',
+  'Platforms',
+];
 
 const SkillsPreview = ({ skills = [] }) => {
   const [activeCategory, setActiveCategory] = useState('All');
