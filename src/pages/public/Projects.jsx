@@ -160,41 +160,45 @@ const Projects = () => {
       {/* Project Detail Modal */}
       <AnimatePresence>
         {selectedProject && (
-          <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-10"
+            onClick={() => setSelectedProject(null)}
+          >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-cocoa/60 backdrop-blur-sm" />
+
+            {/* Modal */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-cocoa/60 backdrop-blur-sm z-50"
-              onClick={() => setSelectedProject(null)}
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 40 }}
+              initial={{ opacity: 0, scale: 0.92, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 40 }}
+              exit={{ opacity: 0, scale: 0.92, y: 30 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="fixed inset-x-3 sm:inset-x-auto sm:left-1/2 top-1/2 sm:-translate-x-1/2 -translate-y-1/2 z-50
-                       sm:w-[90vw] md:w-[85vw] max-w-3xl max-h-[85vh] overflow-y-auto overflow-x-hidden
-                       bg-silk rounded-2xl sm:rounded-3xl shadow-warm-xl"
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-3xl max-h-full flex flex-col
+                       bg-silk rounded-2xl sm:rounded-3xl shadow-warm-xl overflow-hidden"
             >
               {/* Modal close */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-silk/80 backdrop-blur-sm
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 p-2 rounded-full bg-silk/80 backdrop-blur-sm
                          hover:bg-canvas/50 transition-colors text-cocoa"
               >
                 <X size={20} />
               </button>
 
-              {/* Modal thumbnail */}
+              {/* Modal thumbnail — fixed height, never scrolls */}
               {selectedProject.thumbnail_url && (
-                <div className="h-40 sm:h-52 md:h-64 overflow-hidden rounded-t-2xl sm:rounded-t-3xl flex-shrink-0">
+                <div className="h-40 sm:h-52 md:h-64 flex-shrink-0 overflow-hidden">
                   <img src={selectedProject.thumbnail_url} alt={selectedProject.title}
                     className="w-full h-full object-cover object-center" />
                 </div>
               )}
 
-              <div className="p-4 sm:p-6 md:p-8 min-w-0">
+              {/* Scrollable content area */}
+              <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-6 md:p-8 min-w-0">
                 <span className={`inline-block px-3 py-1 rounded-full text-xs font-mono font-medium mb-3 ${statusColors[selectedProject.status]}`}>
                   {statusLabels[selectedProject.status] || selectedProject.status}
                 </span>
@@ -235,7 +239,7 @@ const Projects = () => {
                 </div>
               </div>
             </motion.div>
-          </>
+          </motion.div>
         )}
       </AnimatePresence>
     </PageTransition>
