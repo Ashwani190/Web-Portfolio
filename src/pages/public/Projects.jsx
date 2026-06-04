@@ -98,7 +98,8 @@ const Projects = () => {
                 whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(54,8,0,0.15)' }}
                 onClick={() => setSelectedProject(project)}
                 className="group cursor-pointer rounded-2xl overflow-hidden bg-white/60 backdrop-blur-sm
-                         border border-canvas/40 shadow-warm-sm hover:border-ember/30 transition-all duration-300"
+                         border border-canvas/40 shadow-warm-sm hover:border-ember/30 transition-all duration-300
+                         min-w-0"
               >
                 {/* Thumbnail */}
                 <div className="relative h-48 overflow-hidden bg-gradient-to-br from-canvas/30 to-burlap/20">
@@ -116,11 +117,12 @@ const Projects = () => {
                   </span>
                 </div>
 
-                <div className="p-5">
-                  <h3 className="text-lg font-display font-bold text-cocoa mb-2 group-hover:text-ember transition-colors">
+                <div className="p-4 sm:p-5 min-w-0">
+                  <h3 className="text-base sm:text-lg font-display font-bold text-cocoa mb-2 group-hover:text-ember transition-colors
+                                 break-words overflow-wrap-anywhere hyphens-auto">
                     {project.title}
                   </h3>
-                  <p className="text-sm font-body text-timber mb-4 line-clamp-2">{project.description}</p>
+                  <p className="text-sm font-body text-timber mb-4 line-clamp-2 break-words">{project.description}</p>
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {project.tech_stack?.slice(0, 4).map((tech) => (
                       <Badge key={tech}>{tech}</Badge>
@@ -171,9 +173,9 @@ const Projects = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 40 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50
-                       w-[95vw] max-w-3xl max-h-[85vh] overflow-y-auto
-                       bg-silk rounded-3xl shadow-warm-xl"
+              className="fixed inset-x-3 sm:inset-x-auto sm:left-1/2 top-1/2 sm:-translate-x-1/2 -translate-y-1/2 z-50
+                       sm:w-[90vw] md:w-[85vw] max-w-3xl max-h-[85vh] overflow-y-auto overflow-x-hidden
+                       bg-silk rounded-2xl sm:rounded-3xl shadow-warm-xl"
             >
               {/* Modal close */}
               <button
@@ -186,20 +188,23 @@ const Projects = () => {
 
               {/* Modal thumbnail */}
               {selectedProject.thumbnail_url && (
-                <div className="h-64 overflow-hidden rounded-t-3xl">
+                <div className="h-40 sm:h-52 md:h-64 overflow-hidden rounded-t-2xl sm:rounded-t-3xl flex-shrink-0">
                   <img src={selectedProject.thumbnail_url} alt={selectedProject.title}
-                    className="w-full h-full object-cover" />
+                    className="w-full h-full object-cover object-center" />
                 </div>
               )}
 
-              <div className="p-8">
+              <div className="p-4 sm:p-6 md:p-8 min-w-0">
                 <span className={`inline-block px-3 py-1 rounded-full text-xs font-mono font-medium mb-3 ${statusColors[selectedProject.status]}`}>
                   {statusLabels[selectedProject.status] || selectedProject.status}
                 </span>
 
-                <h2 className="text-3xl font-display font-bold text-cocoa mb-4">{selectedProject.title}</h2>
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-cocoa mb-3 sm:mb-4
+                               break-words overflow-wrap-anywhere hyphens-auto">
+                  {selectedProject.title}
+                </h2>
 
-                <p className="text-timber font-body mb-6 leading-relaxed">
+                <p className="text-sm sm:text-base text-timber font-body mb-4 sm:mb-6 leading-relaxed break-words">
                   {selectedProject.long_description || selectedProject.description}
                 </p>
 
@@ -214,16 +219,16 @@ const Projects = () => {
                 </div>
 
                 {/* Links */}
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   {selectedProject.demo_url && (
                     <a href={selectedProject.demo_url} target="_blank" rel="noopener noreferrer"
-                      className="btn-primary text-sm">
+                      className="btn-primary text-xs sm:text-sm">
                       <ExternalLink size={16} /> View Live Demo
                     </a>
                   )}
                   {selectedProject.github_url && (
                     <a href={selectedProject.github_url} target="_blank" rel="noopener noreferrer"
-                      className="btn-outline text-sm">
+                      className="btn-outline text-xs sm:text-sm">
                       <Github size={16} /> Source Code
                     </a>
                   )}

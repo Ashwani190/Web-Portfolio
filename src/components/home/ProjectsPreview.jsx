@@ -31,7 +31,7 @@ const ProjectsPreview = ({ projects = [] }) => {
               variants={staggerItem}
               whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(54,8,0,0.15)' }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="group rounded-2xl overflow-hidden bg-white/60 backdrop-blur-sm border border-canvas/40 shadow-warm-sm"
+              className="group rounded-2xl overflow-hidden bg-white/60 backdrop-blur-sm border border-canvas/40 shadow-warm-sm min-w-0"
             >
               {/* Thumbnail */}
               <div className="relative h-48 overflow-hidden bg-gradient-to-br from-canvas/30 to-burlap/20">
@@ -77,11 +77,12 @@ const ProjectsPreview = ({ projects = [] }) => {
               </div>
 
               {/* Content */}
-              <div className="p-5">
-                <h3 className="text-lg font-display font-bold text-cocoa mb-2 group-hover:text-ember transition-colors">
+              <div className="p-4 sm:p-5 min-w-0">
+                <h3 className="text-base sm:text-lg font-display font-bold text-cocoa mb-2 group-hover:text-ember transition-colors
+                               break-words overflow-wrap-anywhere hyphens-auto">
                   {project.title}
                 </h3>
-                <p className="text-sm font-body text-timber mb-4 line-clamp-2">
+                <p className="text-sm font-body text-timber mb-4 line-clamp-2 break-words">
                   {project.description}
                 </p>
 
