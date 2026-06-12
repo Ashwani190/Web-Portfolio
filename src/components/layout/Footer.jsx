@@ -25,7 +25,7 @@ const Footer = () => {
   const { data: socialLinks } = useSupabaseData('social_links', {
     orderBy: 'display_order',
   });
-  const { data: aboutData } = useSupabaseData('about', { single: true, orderBy: 'created_at' });
+  const { data: aboutData } = useSupabaseData('about', { single: true, orderBy: null });
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

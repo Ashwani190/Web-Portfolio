@@ -4,7 +4,7 @@ import { Linkedin } from './SocialIcons';
 import { useSupabaseData } from '../../hooks/useSupabaseData';
 
 const ContactModal = ({ isOpen, onClose }) => {
-  const { data: aboutData } = useSupabaseData('about', { single: true, orderBy: 'created_at' });
+  const { data: aboutData } = useSupabaseData('about', { single: true, orderBy: null });
   const { data: socialLinks } = useSupabaseData('social_links', { orderBy: 'display_order' });
 
   const email = aboutData?.email;

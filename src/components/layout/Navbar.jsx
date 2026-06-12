@@ -18,7 +18,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const location = useLocation();
-  const { data: aboutData } = useSupabaseData('about', { single: true, orderBy: 'created_at' });
+  const { data: aboutData } = useSupabaseData('about', { single: true, orderBy: null });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
