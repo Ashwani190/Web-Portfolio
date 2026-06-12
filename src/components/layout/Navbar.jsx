@@ -39,7 +39,7 @@ const Navbar = () => {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-silk/85 backdrop-blur-xl shadow-warm-sm py-3'
+            ? 'bg-cocoa/95 backdrop-blur-xl shadow-warm-sm py-3'
             : 'bg-transparent py-5'
         }`}
       >
@@ -49,7 +49,7 @@ const Navbar = () => {
             to="/"
             className="relative group"
           >
-            <span className="text-2xl font-display font-bold text-cocoa tracking-tight">
+            <span className={`text-2xl font-display font-bold tracking-tight transition-colors ${scrolled ? 'text-silk' : 'text-cocoa'}`}>
               {aboutData?.brand_name || 'AK'}
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-ember transition-all duration-300 group-hover:w-full" />
@@ -61,17 +61,17 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative px-4 py-2 text-sm font-body font-medium transition-colors duration-200 rounded-lg hover:bg-canvas/30 ${
+                className={`relative px-4 py-2 text-sm font-body font-medium transition-colors duration-200 rounded-lg ${
                   location.pathname === link.path
-                    ? 'text-ember'
-                    : 'text-timber hover:text-cocoa'
+                    ? (scrolled ? 'text-silk' : 'text-ember')
+                    : (scrolled ? 'text-canvas hover:text-silk hover:bg-canvas/10' : 'text-timber hover:text-cocoa hover:bg-canvas/30')
                 }`}
               >
                 {link.label}
                 {location.pathname === link.path && (
                   <motion.span
                     layoutId="navIndicator"
-                    className="absolute bottom-0 left-2 right-2 h-0.5 bg-ember rounded-full"
+                    className={`absolute bottom-0 left-2 right-2 h-0.5 rounded-full ${scrolled ? 'bg-silk' : 'bg-ember'}`}
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -92,7 +92,7 @@ const Navbar = () => {
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-canvas/30 transition-colors text-cocoa"
+              className={`md:hidden p-2 rounded-lg transition-colors ${scrolled ? 'text-silk hover:bg-canvas/10' : 'text-cocoa hover:bg-canvas/30'}`}
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -119,14 +119,14 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 bottom-0 w-[280px] bg-silk shadow-warm-xl z-50 md:hidden"
+              className="fixed top-0 right-0 bottom-0 w-[280px] bg-cocoa shadow-warm-xl z-50 md:hidden"
             >
               <div className="flex flex-col h-full p-6">
                 {/* Close button */}
                 <div className="flex justify-end mb-8">
                   <button
                     onClick={() => setMobileOpen(false)}
-                    className="p-2 rounded-lg hover:bg-canvas/30 transition-colors text-cocoa"
+                    className="p-2 rounded-lg hover:bg-canvas/10 transition-colors text-silk"
                     aria-label="Close menu"
                   >
                     <X size={24} />
@@ -146,8 +146,8 @@ const Navbar = () => {
                         to={link.path}
                         className={`block px-4 py-3 rounded-xl text-base font-body font-medium transition-all duration-200 ${
                           location.pathname === link.path
-                            ? 'bg-ember/10 text-ember'
-                            : 'text-timber hover:bg-canvas/30 hover:text-cocoa'
+                            ? 'bg-canvas/10 text-silk font-bold'
+                            : 'text-canvas hover:bg-canvas/5 hover:text-silk'
                         }`}
                       >
                         {link.label}
