@@ -3,8 +3,8 @@ const Badge = ({ children, variant = 'default', className = '' }) => {
     default: 'bg-canvas/50 text-timber border-canvas',
     ember: 'bg-ember/10 text-ember border-ember/20',
     cocoa: 'bg-cocoa/10 text-cocoa border-cocoa/20',
-    success: 'bg-green-50 text-green-700 border-green-200',
-    warning: 'bg-amber-50 text-amber-700 border-amber-200',
+    success: 'bg-green-900/30 text-green-400 border-green-700',
+    warning: 'bg-amber-900/30 text-amber-400 border-amber-700',
   };
 
   return (

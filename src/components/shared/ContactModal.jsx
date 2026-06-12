@@ -31,7 +31,7 @@ const ContactModal = ({ isOpen, onClose }) => {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="bg-silk rounded-2xl shadow-warm-2xl w-full max-w-md overflow-hidden border border-canvas/40 pointer-events-auto"
             >
-              <div className="flex items-center justify-between p-6 border-b border-canvas/30 bg-white">
+              <div className="flex items-center justify-between p-6 border-b border-canvas/30 bg-canvas">
                 <h3 className="text-xl font-display font-bold text-cocoa">Let's Connect</h3>
                 <button
                   onClick={onClose}
@@ -49,7 +49,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                 {email && (
                   <a
                     href={`mailto:${email}`}
-                    className="flex items-center gap-4 p-4 rounded-xl border border-canvas/40 bg-white hover:border-ember hover:shadow-warm-md transition-all group"
+                    className="flex items-center gap-4 p-4 rounded-xl border border-canvas/40 bg-white/5 hover:border-ember hover:shadow-warm-md transition-all group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-canvas/30 flex items-center justify-center text-ember group-hover:bg-ember/10">
                       <Mail size={20} />
@@ -65,7 +65,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                 {phone && (
                   <a
                     href={`tel:${phone}`}
-                    className="flex items-center gap-4 p-4 rounded-xl border border-canvas/40 bg-white hover:border-ember hover:shadow-warm-md transition-all group"
+                    className="flex items-center gap-4 p-4 rounded-xl border border-canvas/40 bg-white/5 hover:border-ember hover:shadow-warm-md transition-all group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-canvas/30 flex items-center justify-center text-ember group-hover:bg-ember/10">
                       <Phone size={20} />
@@ -83,7 +83,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                     href={linkedinLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 rounded-xl border border-canvas/40 bg-white hover:border-ember hover:shadow-warm-md transition-all group"
+                    className="flex items-center gap-4 p-4 rounded-xl border border-canvas/40 bg-white/5 hover:border-ember hover:shadow-warm-md transition-all group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-canvas/30 flex items-center justify-center text-ember group-hover:bg-ember/10">
                       <Linkedin size={20} />

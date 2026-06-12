@@ -52,12 +52,12 @@ const AdminDashboard = () => {
   }, []);
 
   const statCards = stats ? [
-    { label: 'Projects', value: stats.projects, icon: Folder, color: 'text-blue-500', bg: 'bg-blue-50' },
-    { label: 'Skills', value: stats.skills, icon: Code, color: 'text-indigo-500', bg: 'bg-indigo-50' },
-    { label: 'Blog Posts', value: stats.blog, icon: File, color: 'text-emerald-500', bg: 'bg-emerald-50' },
-    { label: 'Certifications', value: stats.certs, icon: Award, color: 'text-amber-500', bg: 'bg-amber-50' },
-    { label: 'Education', value: stats.edu, icon: GraduationCap, color: 'text-purple-500', bg: 'bg-purple-50' },
-    { label: 'Achievements', value: stats.achieve, icon: Trophy, color: 'text-rose-500', bg: 'bg-rose-50' },
+    { label: 'Projects', value: stats.projects, icon: Folder, color: 'text-blue-400', bg: 'bg-blue-900/30' },
+    { label: 'Skills', value: stats.skills, icon: Code, color: 'text-indigo-400', bg: 'bg-indigo-900/30' },
+    { label: 'Blog Posts', value: stats.blog, icon: File, color: 'text-emerald-400', bg: 'bg-emerald-900/30' },
+    { label: 'Certifications', value: stats.certs, icon: Award, color: 'text-amber-400', bg: 'bg-amber-900/30' },
+    { label: 'Education', value: stats.edu, icon: GraduationCap, color: 'text-purple-400', bg: 'bg-purple-900/30' },
+    { label: 'Achievements', value: stats.achieve, icon: Trophy, color: 'text-rose-400', bg: 'bg-rose-900/30' },
   ] : [];
 
   return (
@@ -86,7 +86,7 @@ const AdminDashboard = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      className="bg-white p-6 rounded-2xl border border-canvas/40 shadow-warm-sm flex items-center justify-between"
+                      className="bg-canvas p-6 rounded-2xl border border-canvas/40 shadow-warm-sm flex items-center justify-between"
                     >
                       <div>
                         <p className="text-sm font-body font-medium text-timber mb-1">{stat.label}</p>

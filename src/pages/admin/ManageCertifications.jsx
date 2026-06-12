@@ -31,7 +31,7 @@ const SortableItem = ({ id, item, onEdit, onDelete }) => {
 
   return (
     <div ref={setNodeRef} style={style}
-      className={`flex items-center gap-4 p-4 mb-3 bg-white rounded-xl border ${
+      className={`flex items-center gap-4 p-4 mb-3 bg-canvas rounded-xl border ${
         isDragging ? 'border-ember shadow-warm-lg' : 'border-canvas/40 shadow-sm'
       }`}
     >
@@ -63,7 +63,7 @@ const SortableItem = ({ id, item, onEdit, onDelete }) => {
 
       <div className="flex items-center gap-1">
         <button onClick={() => onEdit(item)} className="p-2 text-timber hover:bg-canvas/20 rounded-lg"><Edit2 size={16} /></button>
-        <button onClick={() => onDelete(item)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg"><Trash2 size={16} /></button>
+        <button onClick={() => onDelete(item)} className="p-2 text-red-500 hover:bg-red-900/30 rounded-lg"><Trash2 size={16} /></button>
       </div>
     </div>
   );
@@ -138,7 +138,7 @@ const ManageCertifications = () => {
               </div>
 
               {loading ? <LoadingSpinner /> : certs.length === 0 ? (
-                <div className="text-center py-20 bg-white rounded-2xl border border-canvas/40 border-dashed">
+                <div className="text-center py-20 bg-canvas rounded-2xl border border-canvas/40 border-dashed">
                   <Award className="mx-auto mb-4 text-canvas/60" size={48} />
                   <p className="text-timber font-body">No certifications added yet.</p>
                 </div>
@@ -159,41 +159,41 @@ const ManageCertifications = () => {
                 <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                   className="fixed top-0 right-0 bottom-0 w-full sm:w-[450px] bg-silk shadow-warm-xl z-50 flex flex-col"
                 >
-                  <div className="flex items-center justify-between p-6 border-b border-canvas/30 bg-white">
+                  <div className="flex items-center justify-between p-6 border-b border-canvas/30 bg-canvas">
                     <h3 className="text-xl font-display font-bold text-cocoa">{editingItem ? 'Edit Cert' : 'Add Cert'}</h3>
                     <button onClick={() => setIsFormOpen(false)} className="p-2 hover:bg-canvas/30 rounded-lg"><X size={20} className="lucide lucide-x" /></button>
                   </div>
                   
-                  <div className="flex-1 overflow-y-auto p-6 bg-white/50">
+                  <div className="flex-1 overflow-y-auto p-6 bg-canvas/50">
                     <form id="cert-form" onSubmit={handleSubmit} className="space-y-5">
                       <div className="space-y-2">
                         <label className="text-sm font-body font-medium text-cocoa">Title *</label>
-                        <input type="text" required value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="input-field bg-white" />
+                        <input type="text" required value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="input-field bg-canvas" />
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm font-body font-medium text-cocoa">Issuer *</label>
-                        <input type="text" required value={formData.issuer} onChange={e => setFormData({...formData, issuer: e.target.value})} className="input-field bg-white" placeholder="e.g. AWS, Meta" />
+                        <input type="text" required value={formData.issuer} onChange={e => setFormData({...formData, issuer: e.target.value})} className="input-field bg-canvas" placeholder="e.g. AWS, Meta" />
                       </div>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <label className="text-sm font-body font-medium text-cocoa">Issue Date</label>
-                          <input type="date" value={formData.issue_date || ''} onChange={e => setFormData({...formData, issue_date: e.target.value})} className="input-field bg-white" />
+                          <input type="date" value={formData.issue_date || ''} onChange={e => setFormData({...formData, issue_date: e.target.value})} className="input-field bg-canvas" />
                         </div>
                         <div className="space-y-2">
                           <label className="text-sm font-body font-medium text-cocoa">Expiry Date</label>
-                          <input type="date" value={formData.expiry_date || ''} onChange={e => setFormData({...formData, expiry_date: e.target.value})} className="input-field bg-white" />
+                          <input type="date" value={formData.expiry_date || ''} onChange={e => setFormData({...formData, expiry_date: e.target.value})} className="input-field bg-canvas" />
                         </div>
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm font-body font-medium text-cocoa">Credential URL</label>
-                        <input type="url" value={formData.credential_url || ''} onChange={e => setFormData({...formData, credential_url: e.target.value})} className="input-field bg-white" />
+                        <input type="url" value={formData.credential_url || ''} onChange={e => setFormData({...formData, credential_url: e.target.value})} className="input-field bg-canvas" />
                       </div>
                       <div className="pt-2">
                         <ImageUploader label="Badge Image (Optional)" value={formData.badge_image_url} onChange={url => setFormData({...formData, badge_image_url: url})} path="certs" />
                       </div>
                     </form>
                   </div>
-                  <div className="p-6 border-t border-canvas/30 bg-white flex gap-3">
+                  <div className="p-6 border-t border-canvas/30 bg-canvas flex gap-3">
                     <button type="button" onClick={() => setIsFormOpen(false)} className="btn-outline flex-1">Cancel</button>
                     <button type="submit" form="cert-form" disabled={saving} className="btn-primary flex-1">Save</button>
                   </div>

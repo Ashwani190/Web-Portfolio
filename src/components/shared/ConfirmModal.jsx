@@ -34,7 +34,7 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, title, message, confirmText 
             </button>
 
             {/* Icon */}
-            <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center mb-4">
+            <div className="w-12 h-12 rounded-full bg-red-900/30 flex items-center justify-center mb-4">
               <AlertTriangle className="text-red-500" size={24} />
             </div>
 

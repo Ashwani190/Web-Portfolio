@@ -13,7 +13,7 @@ const AnimatedCard = ({ children, className = '', delay = 0, hover = true }) => 
       }}
       whileHover={
         hover
-          ? { y: -6, boxShadow: '0 20px 40px rgba(54,8,0,0.15)' }
+          ? { y: -6, boxShadow: '0 20px 40px rgba(0,0,0,0.30)' }
           : {}
       }
       className={`card ${hover ? 'card-hover cursor-pointer' : ''} ${className}`}

@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --silk: #FBF9E4;
-  --canvas: #B8C8D8;
+  --silk: #0E2240;
+  --canvas: #1A3A5C;
   --burlap: #5B88B2;
-  --timber: #1E4A7A;
+  --timber: #B8D0E4;
   --ember: #5B88B2;
-  --cocoa: #122C4F;
+  --cocoa: #FBF9E4;
 }
 
 /* ===== BASE STYLES ===== */
@@ -102,7 +102,7 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-ember text-silk font-body font-semibold rounded-lg transition-all duration-300 hover:bg-cocoa hover:shadow-warm-md active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-ember/50 focus:ring-offset-2 focus:ring-offset-silk;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-ember text-cocoa font-body font-semibold rounded-lg transition-all duration-300 hover:bg-burlap hover:shadow-warm-md active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-ember/50 focus:ring-offset-2 focus:ring-offset-silk;
   }
 
   .btn-outline {
@@ -110,7 +110,7 @@
   }
 
   .card {
-    @apply bg-white/60 backdrop-blur-sm rounded-2xl border border-canvas/50 shadow-warm-sm transition-all duration-300;
+    @apply bg-white/5 backdrop-blur-sm rounded-2xl border border-canvas/50 shadow-warm-sm transition-all duration-300;
   }
 
   .card-hover {
@@ -126,7 +126,7 @@
   }
 
   .text-gradient {
-    @apply bg-gradient-to-r from-ember to-cocoa bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-ember to-burlap bg-clip-text text-transparent;
   }
 
   .glass {

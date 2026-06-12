@@ -106,7 +106,7 @@ const ManageAbout = () => {
               {loading ? (
                 <LoadingSpinner />
               ) : (
-                <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-canvas/40 shadow-warm-sm p-6 sm:p-8">
+                <form onSubmit={handleSubmit} className="bg-canvas rounded-2xl border border-canvas/40 shadow-warm-sm p-6 sm:p-8">
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     {/* Name */}
@@ -119,7 +119,7 @@ const ManageAbout = () => {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="input-field bg-white"
+                        className="input-field bg-canvas"
                         placeholder="Ashwani Kumar"
                       />
                     </div>
@@ -133,7 +133,7 @@ const ManageAbout = () => {
                         type="text"
                         value={formData.tagline || ''}
                         onChange={handleChange}
-                        className="input-field bg-white"
+                        className="input-field bg-canvas"
                         placeholder="Full-Stack Developer & UI/UX Designer"
                       />
                     </div>
@@ -147,7 +147,7 @@ const ManageAbout = () => {
                         type="email"
                         value={formData.email || ''}
                         onChange={handleChange}
-                        className="input-field bg-white"
+                        className="input-field bg-canvas"
                         placeholder="hello@example.com"
                       />
                     </div>
@@ -161,7 +161,7 @@ const ManageAbout = () => {
                         type="text"
                         value={formData.location || ''}
                         onChange={handleChange}
-                        className="input-field bg-white"
+                        className="input-field bg-canvas"
                         placeholder="San Francisco, CA"
                       />
                     </div>
@@ -175,7 +175,7 @@ const ManageAbout = () => {
                         type="text"
                         value={formData.brand_name || ''}
                         onChange={handleChange}
-                        className="input-field bg-white"
+                        className="input-field bg-canvas"
                         placeholder="AK"
                       />
                     </div>
@@ -189,7 +189,7 @@ const ManageAbout = () => {
                         type="tel"
                         value={formData.phone_number || ''}
                         onChange={handleChange}
-                        className="input-field bg-white"
+                        className="input-field bg-canvas"
                         placeholder="+1 (555) 123-4567"
                       />
                     </div>
@@ -203,7 +203,7 @@ const ManageAbout = () => {
                         type="text"
                         value={formData.experience_years || ''}
                         onChange={handleChange}
-                        className="input-field bg-white"
+                        className="input-field bg-canvas"
                         placeholder="3+"
                       />
                     </div>
@@ -218,7 +218,7 @@ const ManageAbout = () => {
                       type="text"
                       value={formData.hero_roles || ''}
                       onChange={handleChange}
-                      className="input-field bg-white"
+                      className="input-field bg-canvas"
                       placeholder="Full Stack Developer, UI/UX Designer"
                     />
                   </div>
@@ -232,7 +232,7 @@ const ManageAbout = () => {
                       rows={3}
                       value={formData.hero_description || ''}
                       onChange={handleChange}
-                      className="input-field bg-white resize-y"
+                      className="input-field bg-canvas resize-y"
                       placeholder="I craft beautiful, performant web applications..."
                     />
                   </div>
@@ -246,7 +246,7 @@ const ManageAbout = () => {
                       rows={5}
                       value={formData.bio || ''}
                       onChange={handleChange}
-                      className="input-field bg-white resize-y"
+                      className="input-field bg-canvas resize-y"
                       placeholder="Write a short bio about yourself..."
                     />
                   </div>
@@ -272,7 +272,7 @@ const ManageAbout = () => {
                         type="url"
                         value={formData.resume_url || ''}
                         onChange={handleChange}
-                        className="input-field bg-white"
+                        className="input-field bg-canvas"
                         placeholder="https://link-to-your-resume.pdf"
                       />
                       <p className="text-xs text-burlap font-body">Upload your resume to a service like Google Drive and paste the public link here, or upload it to Supabase Storage manually and paste the link.</p>

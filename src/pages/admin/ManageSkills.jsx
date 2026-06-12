@@ -47,7 +47,7 @@ const SortableItem = ({ id, item, onEdit, onDelete }) => {
     <div
       ref={setNodeRef}
       style={style}
-      className={`flex items-center gap-4 p-4 mb-3 bg-white rounded-xl border ${
+      className={`flex items-center gap-4 p-4 mb-3 bg-canvas rounded-xl border ${
         isDragging ? 'border-ember shadow-warm-lg' : 'border-canvas/40 shadow-sm'
       }`}
     >
@@ -82,7 +82,7 @@ const SortableItem = ({ id, item, onEdit, onDelete }) => {
         </button>
         <button
           onClick={() => onDelete(item)}
-          className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+          className="p-2 text-red-500 hover:bg-red-900/30 rounded-lg transition-colors"
         >
           <Trash2 size={16} />
         </button>
@@ -210,7 +210,7 @@ const ManageSkills = () => {
               {loading ? (
                 <LoadingSpinner />
               ) : skills.length === 0 ? (
-                <div className="text-center py-20 bg-white rounded-2xl border border-canvas/40 border-dashed">
+                <div className="text-center py-20 bg-canvas rounded-2xl border border-canvas/40 border-dashed">
                   <Code className="mx-auto mb-4 text-canvas/60" size={48} />
                   <p className="text-timber font-body">No skills added yet.</p>
                 </div>
@@ -248,7 +248,7 @@ const ManageSkills = () => {
                   transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                   className="fixed top-0 right-0 bottom-0 w-full sm:w-[400px] bg-silk shadow-warm-xl z-50 flex flex-col"
                 >
-                  <div className="flex items-center justify-between p-6 border-b border-canvas/30 bg-white">
+                  <div className="flex items-center justify-between p-6 border-b border-canvas/30 bg-canvas">
                     <h3 className="text-xl font-display font-bold text-cocoa">
                       {editingItem ? 'Edit Skill' : 'Add New Skill'}
                     </h3>
@@ -257,7 +257,7 @@ const ManageSkills = () => {
                     </button>
                   </div>
                   
-                  <div className="flex-1 overflow-y-auto p-6 bg-white/50">
+                  <div className="flex-1 overflow-y-auto p-6 bg-canvas/50">
                     <form id="skill-form" onSubmit={handleSubmit} className="space-y-6">
                       <div className="space-y-2">
                         <label className="text-sm font-body font-medium text-cocoa block">Skill Name</label>
@@ -265,7 +265,7 @@ const ManageSkills = () => {
                           type="text" required
                           value={formData.name}
                           onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          className="input-field bg-white"
+                          className="input-field bg-canvas"
                           placeholder="e.g. React.js"
                         />
                       </div>
@@ -275,7 +275,7 @@ const ManageSkills = () => {
                         <select
                           value={formData.category}
                           onChange={(e) => setFormData({...formData, category: e.target.value})}
-                          className="input-field bg-white"
+                          className="input-field bg-canvas"
                         >
                           {categories.map(c => <option key={c} value={c}>{c}</option>)}
                         </select>
@@ -296,7 +296,7 @@ const ManageSkills = () => {
                     </form>
                   </div>
 
-                  <div className="p-6 border-t border-canvas/30 bg-white flex gap-3">
+                  <div className="p-6 border-t border-canvas/30 bg-canvas flex gap-3">
                     <button type="button" onClick={handleCloseForm} className="btn-outline flex-1">Cancel</button>
                     <button type="submit" form="skill-form" disabled={saving} className="btn-primary flex-1">
                       {saving ? 'Saving...' : 'Save Skill'}

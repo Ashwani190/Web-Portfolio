@@ -12,7 +12,7 @@ function App() {
           toastOptions={{
             duration: 4000,
             style: {
-              background: '#122C4F',
+              background: '#1A3A5C',
               color: '#FBF9E4',
               fontFamily: '"DM Sans", system-ui, sans-serif',
               borderRadius: '12px',

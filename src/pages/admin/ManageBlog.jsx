@@ -98,11 +98,11 @@ const ManageBlog = () => {
               <div className="flex justify-between mb-8"><h2 className="text-2xl font-display font-bold text-cocoa">Blog Posts</h2><button onClick={() => handleOpenForm()} className="btn-primary"><Plus size={18} /> New Post</button></div>
               
               {loading ? <LoadingSpinner /> : data.length === 0 ? (
-                <div className="text-center py-20 bg-white rounded-2xl border border-dashed"><File className="mx-auto mb-4 text-canvas/60" size={48} /><p>No posts yet.</p></div>
+                <div className="text-center py-20 bg-canvas rounded-2xl border border-dashed"><File className="mx-auto mb-4 text-canvas/60" size={48} /><p>No posts yet.</p></div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {data.map(post => (
-                    <div key={post.id} className="bg-white rounded-2xl border border-canvas/40 shadow-warm-sm overflow-hidden flex flex-col">
+                    <div key={post.id} className="bg-canvas rounded-2xl border border-canvas/40 shadow-warm-sm overflow-hidden flex flex-col">
                       <div className="h-40 bg-canvas/20 relative">
                         {post.cover_image_url && <img src={post.cover_image_url} className="w-full h-full object-cover" />}
                         <button onClick={() => togglePublish(post)} className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-mono font-medium flex items-center gap-1 ${post.is_published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
@@ -118,7 +118,7 @@ const ManageBlog = () => {
                         </div>
                         <div className="flex gap-2 border-t border-canvas/30 pt-4">
                           <button onClick={() => handleOpenForm(post)} className="flex-1 btn-outline py-2 text-sm"><Edit2 size={14}/> Edit</button>
-                          <button onClick={() => setItemToDelete(post)} className="px-4 py-2 border-2 border-red-200 text-red-500 rounded-lg hover:bg-red-50 transition-colors"><Trash2 size={14}/></button>
+                          <button onClick={() => setItemToDelete(post)} className="px-4 py-2 border-2 border-red-700 text-red-500 rounded-lg hover:bg-red-900/30 transition-colors"><Trash2 size={14}/></button>
                         </div>
                       </div>
                     </div>
@@ -132,7 +132,7 @@ const ManageBlog = () => {
           <AnimatePresence>
             {isFormOpen && (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="absolute inset-0 bg-silk z-40 flex flex-col">
-                <div className="flex items-center justify-between p-4 sm:p-6 border-b border-canvas/30 bg-white">
+                <div className="flex items-center justify-between p-4 sm:p-6 border-b border-canvas/30 bg-canvas">
                   <h3 className="text-xl font-display font-bold text-cocoa">{editingItem ? 'Edit Post' : 'New Post'}</h3>
                   <div className="flex gap-3">
                     <button onClick={() => setIsFormOpen(false)} className="btn-outline">Cancel</button>
@@ -162,7 +162,7 @@ const ManageBlog = () => {
                       
                       {/* Sidebar */}
                       <div className="space-y-6">
-                        <div className="bg-white p-5 rounded-xl border border-canvas/30 space-y-4">
+                        <div className="bg-canvas p-5 rounded-xl border border-canvas/30 space-y-4">
                           <h4 className="font-semibold text-cocoa">Publishing</h4>
                           <label className="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" checked={formData.is_published} onChange={e => setFormData({...formData, is_published: e.target.checked})} className="w-4 h-4 text-ember rounded border-canvas focus:ring-ember" />
@@ -170,12 +170,12 @@ const ManageBlog = () => {
                           </label>
                         </div>
 
-                        <div className="bg-white p-5 rounded-xl border border-canvas/30 space-y-4">
+                        <div className="bg-canvas p-5 rounded-xl border border-canvas/30 space-y-4">
                           <h4 className="font-semibold text-cocoa">Cover Image</h4>
                           <ImageUploader value={formData.cover_image_url} onChange={url => setFormData({...formData, cover_image_url: url})} path="blog" label="" />
                         </div>
 
-                        <div className="bg-white p-5 rounded-xl border border-canvas/30 space-y-4">
+                        <div className="bg-canvas p-5 rounded-xl border border-canvas/30 space-y-4">
                           <h4 className="font-semibold text-cocoa">Tags</h4>
                           <input type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={handleAddTag} placeholder="Press Enter to add" className="input-field py-2 text-sm" />
                           <div className="flex flex-wrap gap-2">

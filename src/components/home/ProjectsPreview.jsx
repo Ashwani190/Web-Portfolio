@@ -29,9 +29,9 @@ const ProjectsPreview = ({ projects = [] }) => {
             <motion.div
               key={project.id}
               variants={staggerItem}
-              whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(54,8,0,0.15)' }}
+              whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(0,0,0,0.30)' }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="group rounded-2xl overflow-hidden bg-white/60 backdrop-blur-sm border border-canvas/40 shadow-warm-sm min-w-0"
+              className="group rounded-2xl overflow-hidden bg-white/5 backdrop-blur-sm border border-canvas/40 shadow-warm-sm min-w-0"
             >
               {/* Thumbnail */}
               <div className="relative h-48 overflow-hidden bg-gradient-to-br from-canvas/30 to-burlap/20">

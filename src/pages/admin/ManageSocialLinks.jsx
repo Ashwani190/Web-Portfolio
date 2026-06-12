@@ -26,7 +26,7 @@ const SortableItem = ({ id, item, onEdit, onDelete }) => {
   const Icon = iconMap[item.icon_name] || LinkIcon;
 
   return (
-    <div ref={setNodeRef} style={style} className={`flex items-center gap-4 p-4 mb-3 bg-white rounded-xl border ${isDragging ? 'border-ember shadow-warm-lg' : 'border-canvas/40 shadow-sm'}`}>
+    <div ref={setNodeRef} style={style} className={`flex items-center gap-4 p-4 mb-3 bg-canvas rounded-xl border ${isDragging ? 'border-ember shadow-warm-lg' : 'border-canvas/40 shadow-sm'}`}>
       <button {...attributes} {...listeners} className="text-canvas/60 hover:text-timber cursor-grab p-1"><GripVertical size={20} /></button>
       <div className="w-10 h-10 rounded-lg bg-canvas/20 flex items-center justify-center text-timber"><Icon size={20} /></div>
       <div className="flex-1">
@@ -35,7 +35,7 @@ const SortableItem = ({ id, item, onEdit, onDelete }) => {
       </div>
       <div className="flex gap-1">
         <button onClick={() => onEdit(item)} className="p-2 text-timber hover:bg-canvas/20 rounded-lg"><Edit2 size={16} /></button>
-        <button onClick={() => onDelete(item)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg"><Trash2 size={16} /></button>
+        <button onClick={() => onDelete(item)} className="p-2 text-red-500 hover:bg-red-900/30 rounded-lg"><Trash2 size={16} /></button>
       </div>
     </div>
   );
@@ -100,7 +100,7 @@ const ManageSocialLinks = () => {
             <div className="max-w-3xl mx-auto">
               <div className="flex justify-between mb-8"><h2 className="text-2xl font-display font-bold text-cocoa">Social Links</h2><button onClick={() => handleOpenForm()} className="btn-primary"><Plus size={18} /> Add</button></div>
               {loading ? <LoadingSpinner /> : data.length === 0 ? (
-                <div className="text-center py-20 bg-white rounded-2xl border border-dashed"><LinkIcon className="mx-auto mb-4 text-canvas/60" size={48} /><p>No links added.</p></div>
+                <div className="text-center py-20 bg-canvas rounded-2xl border border-dashed"><LinkIcon className="mx-auto mb-4 text-canvas/60" size={48} /><p>No links added.</p></div>
               ) : (
                 <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                   <SortableContext items={data} strategy={verticalListSortingStrategy}>
@@ -116,17 +116,17 @@ const ManageSocialLinks = () => {
               <>
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-cocoa/40 z-40" onClick={() => setIsFormOpen(false)} />
                 <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} className="fixed inset-y-0 right-0 w-full sm:w-[400px] bg-silk shadow-xl z-50 flex flex-col">
-                  <div className="p-6 border-b border-canvas/30 bg-white flex justify-between"><h3 className="font-bold">{editingItem ? 'Edit' : 'Add'}</h3><button onClick={() => setIsFormOpen(false)}><span className="text-xl">×</span></button></div>
+                  <div className="p-6 border-b border-canvas/30 bg-canvas flex justify-between"><h3 className="font-bold">{editingItem ? 'Edit' : 'Add'}</h3><button onClick={() => setIsFormOpen(false)}><span className="text-xl">×</span></button></div>
                   <div className="flex-1 overflow-y-auto p-6">
                     <form id="link-form" onSubmit={handleSubmit} className="space-y-4">
-                      <input placeholder="Platform (e.g. GitHub)" required value={formData.platform} onChange={e => setFormData({...formData, platform: e.target.value})} className="input-field bg-white" />
-                      <input type="url" placeholder="URL" required value={formData.url} onChange={e => setFormData({...formData, url: e.target.value})} className="input-field bg-white" />
-                      <select value={formData.icon_name} onChange={e => setFormData({...formData, icon_name: e.target.value})} className="input-field bg-white">
+                      <input placeholder="Platform (e.g. GitHub)" required value={formData.platform} onChange={e => setFormData({...formData, platform: e.target.value})} className="input-field bg-canvas" />
+                      <input type="url" placeholder="URL" required value={formData.url} onChange={e => setFormData({...formData, url: e.target.value})} className="input-field bg-canvas" />
+                      <select value={formData.icon_name} onChange={e => setFormData({...formData, icon_name: e.target.value})} className="input-field bg-canvas">
                         <option value="Github">GitHub</option><option value="Linkedin">LinkedIn</option><option value="Twitter">Twitter</option><option value="Mail">Mail</option><option value="Globe">Globe (Default)</option>
                       </select>
                     </form>
                   </div>
-                  <div className="p-6 bg-white flex gap-3"><button type="submit" form="link-form" disabled={saving} className="btn-primary w-full">Save</button></div>
+                  <div className="p-6 bg-canvas flex gap-3"><button type="submit" form="link-form" disabled={saving} className="btn-primary w-full">Save</button></div>
                 </motion.div>
               </>
             )}

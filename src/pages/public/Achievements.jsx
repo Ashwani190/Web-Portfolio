@@ -28,7 +28,7 @@ const Achievements = () => {
       y: (Math.random() - 0.5) * 120,
       size: 3 + Math.random() * 5,
       delay: Math.random() * 0.3,
-      color: ['#5B88B2', '#1E4A7A', '#B8C8D8', '#122C4F'][Math.floor(Math.random() * 4)],
+      color: ['#5B88B2', '#B8D0E4', '#FBF9E4', '#7BA3C4'][Math.floor(Math.random() * 4)],
     }));
   }, []);
 
@@ -77,7 +77,7 @@ const Achievements = () => {
                 className={`px-5 py-2.5 rounded-full text-sm font-body font-medium transition-all duration-300 ${
                   activeCategory === cat
                     ? 'bg-ember text-silk shadow-warm-md'
-                    : 'bg-white/60 text-timber hover:bg-canvas/40 border border-canvas/50'
+                    : 'bg-white/5 text-timber hover:bg-canvas/40 border border-canvas/50'
                 }`}
               >
                 {cat}
@@ -103,7 +103,7 @@ const Achievements = () => {
                 whileHover={{ y: -6 }}
                 onHoverStart={() => setHoveredId(achievement.id)}
                 onHoverEnd={() => setHoveredId(null)}
-                className="relative group p-6 rounded-2xl bg-white/60 backdrop-blur-sm border border-canvas/40
+                className="relative group p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-canvas/40
                          shadow-warm-sm hover:shadow-warm-lg hover:border-ember/30 transition-all duration-300 overflow-hidden"
               >
                 {/* Confetti particles on hover */}

@@ -37,7 +37,7 @@ const SortableItem = ({ id, item, onEdit, onDelete }) => {
 
   return (
     <div ref={setNodeRef} style={style}
-      className={`flex items-start sm:items-center gap-4 p-4 mb-3 bg-white rounded-xl border ${
+      className={`flex items-start sm:items-center gap-4 p-4 mb-3 bg-canvas rounded-xl border ${
         isDragging ? 'border-ember shadow-warm-lg' : 'border-canvas/40 shadow-sm'
       }`}
     >
@@ -74,7 +74,7 @@ const SortableItem = ({ id, item, onEdit, onDelete }) => {
         <button onClick={() => onEdit(item)} className="p-2 text-timber hover:bg-canvas/20 rounded-lg">
           <Edit2 size={16} />
         </button>
-        <button onClick={() => onDelete(item)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg">
+        <button onClick={() => onDelete(item)} className="p-2 text-red-500 hover:bg-red-900/30 rounded-lg">
           <Trash2 size={16} />
         </button>
       </div>
@@ -183,7 +183,7 @@ const ManageProjects = () => {
               {loading ? (
                 <LoadingSpinner />
               ) : projects.length === 0 ? (
-                <div className="text-center py-20 bg-white rounded-2xl border border-canvas/40 border-dashed">
+                <div className="text-center py-20 bg-canvas rounded-2xl border border-canvas/40 border-dashed">
                   <Folder className="mx-auto mb-4 text-canvas/60" size={48} />
                   <p className="text-timber font-body">No projects added yet.</p>
                 </div>
@@ -209,7 +209,7 @@ const ManageProjects = () => {
                   className="fixed inset-0 bg-cocoa/50 backdrop-blur-sm z-40" onClick={() => setIsFormOpen(false)} />
                 
                 <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }}
-                  className="fixed inset-4 sm:inset-10 lg:inset-y-10 lg:inset-x-auto lg:left-1/2 lg:-translate-x-1/2 lg:w-[800px] bg-white shadow-warm-xl z-50 flex flex-col rounded-2xl overflow-hidden"
+                  className="fixed inset-4 sm:inset-10 lg:inset-y-10 lg:inset-x-auto lg:left-1/2 lg:-translate-x-1/2 lg:w-[800px] bg-canvas shadow-warm-xl z-50 flex flex-col rounded-2xl overflow-hidden"
                 >
                   <div className="flex items-center justify-between p-6 border-b border-canvas/30 bg-silk/50">
                     <h3 className="text-xl font-display font-bold text-cocoa">{editingItem ? 'Edit Project' : 'Add New Project'}</h3>

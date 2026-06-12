@@ -77,7 +77,7 @@ const Education = () => {
                   />
 
                   {/* Card */}
-                  <div className="p-6 rounded-2xl bg-white/60 backdrop-blur-sm border border-canvas/40
+                  <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-canvas/40
                                shadow-warm-sm hover:shadow-warm-md transition-shadow duration-300">
                     {/* Institution logo + name */}
                     <div className={`flex items-center gap-3 mb-3 ${isLeft ? 'lg:flex-row-reverse' : ''}`}>

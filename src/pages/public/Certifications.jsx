@@ -60,10 +60,10 @@ const Certifications = () => {
                 variants={staggerItem}
                 whileHover={{
                   y: -6,
-                  boxShadow: '0 12px 32px rgba(128,55,12,0.18)',
-                  borderColor: 'rgba(128,55,12,0.4)',
+                  boxShadow: '0 12px 32px rgba(0,0,0,0.30)',
+                  borderColor: 'rgba(91,136,178,0.4)',
                 }}
-                className="group p-6 rounded-2xl bg-white/60 backdrop-blur-sm border-2 border-canvas/30
+                className="group p-6 rounded-2xl bg-white/5 backdrop-blur-sm border-2 border-canvas/30
                          shadow-warm-sm transition-all duration-300 hover:border-ember/30"
               >
                 {/* Badge Image */}

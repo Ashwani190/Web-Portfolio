@@ -11,9 +11,9 @@ import { staggerContainer, staggerItem } from '../../hooks/useScrollAnimation';
 const statusFilters = ['All', 'completed', 'in-progress', 'archived'];
 const statusLabels = { 'completed': 'Completed', 'in-progress': 'In Progress', 'archived': 'Archived' };
 const statusColors = {
-  'completed': 'bg-green-100 text-green-700',
-  'in-progress': 'bg-amber-100 text-amber-700',
-  'archived': 'bg-gray-100 text-gray-500',
+  'completed': 'bg-green-900/40 text-green-300',
+  'in-progress': 'bg-amber-900/40 text-amber-300',
+  'archived': 'bg-gray-800/40 text-gray-400',
 };
 
 const Projects = () => {
@@ -72,7 +72,7 @@ const Projects = () => {
                 className={`px-5 py-2.5 rounded-full text-sm font-body font-medium transition-all duration-300 ${
                   activeFilter === filter
                     ? 'bg-ember text-silk shadow-warm-md'
-                    : 'bg-white/60 text-timber hover:bg-canvas/40 border border-canvas/50'
+                    : 'bg-white/5 text-timber hover:bg-canvas/40 border border-canvas/50'
                 }`}
               >
                 {filter === 'All' ? 'All' : statusLabels[filter]}
@@ -95,9 +95,9 @@ const Projects = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(54,8,0,0.15)' }}
+                whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(0,0,0,0.30)' }}
                 onClick={() => setSelectedProject(project)}
-                className="group cursor-pointer rounded-2xl overflow-hidden bg-white/60 backdrop-blur-sm
+                className="group cursor-pointer rounded-2xl overflow-hidden bg-white/5 backdrop-blur-sm
                          border border-canvas/40 shadow-warm-sm hover:border-ember/30 transition-all duration-300
                          min-w-0"
               >

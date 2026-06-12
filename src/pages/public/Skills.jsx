@@ -78,7 +78,7 @@ const Skills = () => {
                 className={`px-5 py-2.5 rounded-full text-sm font-body font-medium transition-all duration-300 ${
                   activeCategory === cat
                     ? 'bg-ember text-silk shadow-warm-md'
-                    : 'bg-white/60 text-timber hover:bg-canvas/40 border border-canvas/50'
+                    : 'bg-white/5 text-timber hover:bg-canvas/40 border border-canvas/50'
                 }`}
               >
                 {cat}
@@ -109,8 +109,8 @@ const Skills = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  whileHover={{ y: -4, boxShadow: '0 12px 24px rgba(54,8,0,0.12)' }}
-                  className="p-5 rounded-2xl bg-white/60 backdrop-blur-sm border border-canvas/40
+                  whileHover={{ y: -4, boxShadow: '0 12px 24px rgba(0,0,0,0.25)' }}
+                  className="p-5 rounded-2xl bg-white/5 backdrop-blur-sm border border-canvas/40
                            hover:border-ember/30 transition-all duration-300"
                 >
                   <div className="flex items-center justify-between mb-3">
