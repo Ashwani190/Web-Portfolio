@@ -4,12 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        silk:   '#feeee1',
-        canvas: '#d9bfa8',
-        burlap: '#bc9d71',
-        timber: '#79553d',
-        ember:  '#80370c',
-        cocoa:  '#360800',
+        silk:   '#FBF9E4',
+        canvas: '#B8C8D8',
+        burlap: '#5B88B2',
+        timber: '#1E4A7A',
+        ember:  '#5B88B2',
+        cocoa:  '#122C4F',
       },
       fontFamily: {
         display: ['"Playfair Display"', 'Georgia', 'serif'],
@@ -27,10 +27,10 @@ export default {
         float:   { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
       },
       boxShadow: {
-        'warm-sm': '0 2px 8px rgba(54,8,0,0.08)',
-        'warm-md': '0 8px 24px rgba(54,8,0,0.12)',
-        'warm-lg': '0 20px 48px rgba(54,8,0,0.18)',
-        'warm-xl': '0 32px 64px rgba(54,8,0,0.24)',
+        'warm-sm': '0 2px 8px rgba(18,44,79,0.08)',
+        'warm-md': '0 8px 24px rgba(18,44,79,0.12)',
+        'warm-lg': '0 20px 48px rgba(18,44,79,0.18)',
+        'warm-xl': '0 32px 64px rgba(18,44,79,0.24)',
       },
     },
   },

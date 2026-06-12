@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --silk: #feeee1;
-  --canvas: #d9bfa8;
-  --burlap: #bc9d71;
-  --timber: #79553d;
-  --ember: #80370c;
-  --cocoa: #360800;
+  --silk: #FBF9E4;
+  --canvas: #B8C8D8;
+  --burlap: #5B88B2;
+  --timber: #1E4A7A;
+  --ember: #5B88B2;
+  --cocoa: #122C4F;
 }
 
 /* ===== BASE STYLES ===== */

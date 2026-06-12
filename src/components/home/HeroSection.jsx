@@ -42,7 +42,7 @@ const HeroSection = ({ aboutData }) => {
       {/* Decorative grid dots */}
       <div className="absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: `radial-gradient(circle, #360800 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(circle, #122C4F 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
         }}
       />

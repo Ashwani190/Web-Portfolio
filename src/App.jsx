@@ -12,22 +12,22 @@ function App() {
           toastOptions={{
             duration: 4000,
             style: {
-              background: '#360800',
-              color: '#feeee1',
+              background: '#122C4F',
+              color: '#FBF9E4',
               fontFamily: '"DM Sans", system-ui, sans-serif',
               borderRadius: '12px',
               padding: '12px 16px',
             },
             success: {
               iconTheme: {
-                primary: '#80370c',
-                secondary: '#feeee1',
+                primary: '#5B88B2',
+                secondary: '#FBF9E4',
               },
             },
             error: {
               iconTheme: {
                 primary: '#dc2626',
-                secondary: '#feeee1',
+                secondary: '#FBF9E4',
               },
             },
           }}
