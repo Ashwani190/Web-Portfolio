@@ -67,56 +67,7 @@ const HeroSection = ({ aboutData }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* ── Background ghost text (deepest layer) ── */}
-      <motion.div
-        className="hero-bg-layer"
-        style={{
-          x: prefersReducedMotion ? 0 : bgParallaxX,
-          y: prefersReducedMotion ? 0 : bgParallaxY,
-        }}
-        aria-hidden="true"
-      >
-        <span className="hero-bg-text">{name}</span>
-      </motion.div>
-
-      {/* ── Mid-depth ghost text ── */}
-      <motion.div
-        className="hero-bg-layer hero-bg-layer--mid"
-        style={{
-          x: prefersReducedMotion ? 0 : midParallaxX,
-          y: prefersReducedMotion ? 0 : midParallaxY,
-        }}
-        aria-hidden="true"
-      >
-        <span className="hero-bg-text hero-bg-text--mid">{name}</span>
-      </motion.div>
-
-      {/* ── Ambient glow ── */}
-      <div className="hero-glow hero-glow--primary" aria-hidden="true" />
-      <div className="hero-glow hero-glow--secondary" aria-hidden="true" />
-
-      {/* ── Decorative floating circles ── */}
-      {[...Array(6)].map((_, i) => (
-        <div
-          key={i}
-          className="absolute rounded-full opacity-[0.07] bg-canvas"
-          style={{
-            width: 80 + i * 70,
-            height: 80 + i * 70,
-            top: `${10 + i * 15}%`,
-            left: `${5 + i * 16}%`,
-          }}
-        />
-      ))}
-
-      {/* ── Grid dots ── */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `radial-gradient(circle, #5B88B2 1px, transparent 1px)`,
-          backgroundSize: '40px 40px',
-        }}
-      />
+      {/* Old background elements removed to use the new global AnimatedBackground */}
 
       {/* ── Content (mouse-tilt wrapper) ── */}
       <motion.div

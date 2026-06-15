@@ -2,11 +2,13 @@ import { AuthProvider } from './context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import AppRouter from './router/AppRouter';
 import ErrorBoundary from './components/shared/ErrorBoundary';
+import AnimatedBackground from './components/layout/AnimatedBackground';
 
 function App() {
   return (
     <ErrorBoundary>
       <AuthProvider>
+        <AnimatedBackground />
         <Toaster
           position="top-right"
           toastOptions={{
