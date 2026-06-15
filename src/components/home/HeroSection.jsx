@@ -143,17 +143,14 @@ const HeroSection = ({ aboutData }) => {
           {/* ══════════════════════════════════════════════════════
                ROLLING GLIDE — Only applied to the Headline
               ══════════════════════════════════════════════════════ */}
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+          <h1
             className={`hero-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-cocoa mb-6 leading-[0.95] ${f('hero-glide')}`}
           >
             <motion.span
               className="inline-block"
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               Hello, I'm{' '}
             </motion.span>
@@ -164,11 +161,11 @@ const HeroSection = ({ aboutData }) => {
                 <motion.span
                   key={idx}
                   className={`inline-block ${isLast ? 'text-gradient' : ''}`}
-                  initial={{ opacity: 0, y: 50 + idx * 10 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    duration: 1,
-                    delay: 0.55 + idx * 0.12,
+                    duration: 0.7,
+                    delay: 0.2 + idx * 0.1,
                     ease: [0.25, 0.46, 0.45, 0.94],
                   }}
                 >
@@ -177,7 +174,7 @@ const HeroSection = ({ aboutData }) => {
                 </motion.span>
               );
             })}
-          </motion.h1>
+          </h1>
 
           {/* ── Typewriter roles ── */}
           <motion.div
