@@ -4,8 +4,6 @@ import { TypeAnimation } from 'react-type-animation';
 import { ArrowRight, Download, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// ─── Component ─────────────────────────────────────────────────────────────────
-
 const HeroSection = ({ aboutData }) => {
   const name = aboutData?.name || 'Ashwani Kumar';
   const resumeUrl = aboutData?.resume_url;
@@ -24,30 +22,29 @@ const HeroSection = ({ aboutData }) => {
 
   const prefersReducedMotion = useReducedMotion();
 
-  // ── Mouse tracking for 3D tilt ──
+  // ── Mouse tracking for interactive tilt ──
   const containerRef = useRef(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { stiffness: 40, damping: 25, mass: 1.5 };
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), springConfig);
+  // Very soft springs for organic feel
+  const springConfig = { stiffness: 35, damping: 30, mass: 1.8 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [3, -3]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-3, 3]), springConfig);
 
-  // Parallax offsets for different depth layers
-  const fgParallaxX = useSpring(useTransform(mouseX, [-0.5, 0.5], [12, -12]), springConfig);
-  const fgParallaxY = useSpring(useTransform(mouseY, [-0.5, 0.5], [12, -12]), springConfig);
-  const bgParallaxX = useSpring(useTransform(mouseX, [-0.5, 0.5], [24, -24]), springConfig);
-  const bgParallaxY = useSpring(useTransform(mouseY, [-0.5, 0.5], [24, -24]), springConfig);
+  // Parallax offsets — bg moves more than fg for depth
+  const bgParallaxX = useSpring(useTransform(mouseX, [-0.5, 0.5], [15, -15]), springConfig);
+  const bgParallaxY = useSpring(useTransform(mouseY, [-0.5, 0.5], [15, -15]), springConfig);
+  const midParallaxX = useSpring(useTransform(mouseX, [-0.5, 0.5], [8, -8]), springConfig);
+  const midParallaxY = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), springConfig);
 
   const handleMouseMove = useCallback(
     (e) => {
       if (prefersReducedMotion) return;
       const rect = containerRef.current?.getBoundingClientRect();
       if (!rect) return;
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      mouseX.set(x);
-      mouseY.set(y);
+      mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+      mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
     },
     [mouseX, mouseY, prefersReducedMotion],
   );
@@ -57,8 +54,11 @@ const HeroSection = ({ aboutData }) => {
     mouseY.set(0);
   }, [mouseX, mouseY]);
 
-  // Split the name into words for staggered animation
+  // Split name into words for layered parallax
   const nameWords = useMemo(() => name.split(' '), [name]);
+
+  // CSS class helper — only apply float classes when motion is allowed
+  const f = (cls) => (prefersReducedMotion ? '' : cls);
 
   return (
     <section
@@ -67,67 +67,49 @@ const HeroSection = ({ aboutData }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* ── Background blurred text layer (deepest depth) ── */}
+      {/* ── Background ghost text (deepest layer) ── */}
       <motion.div
-        className="hero-bg-text-layer"
+        className="hero-bg-layer"
         style={{
           x: prefersReducedMotion ? 0 : bgParallaxX,
           y: prefersReducedMotion ? 0 : bgParallaxY,
         }}
         aria-hidden="true"
       >
-        <span className={`hero-bg-text ${prefersReducedMotion ? '' : 'hero-float-bg'}`}>
-          {name}
-        </span>
+        <span className={`hero-bg-text ${f('hero-drift-slow')}`}>{name}</span>
       </motion.div>
 
-      {/* ── Second ghost text layer (mid depth) ── */}
+      {/* ── Mid-depth ghost text ── */}
       <motion.div
-        className="hero-bg-text-layer hero-bg-text-layer--mid"
+        className="hero-bg-layer hero-bg-layer--mid"
         style={{
-          x: prefersReducedMotion ? 0 : fgParallaxX,
-          y: prefersReducedMotion ? 0 : fgParallaxY,
+          x: prefersReducedMotion ? 0 : midParallaxX,
+          y: prefersReducedMotion ? 0 : midParallaxY,
         }}
         aria-hidden="true"
       >
-        <span className={`hero-bg-text hero-bg-text--mid ${prefersReducedMotion ? '' : 'hero-float-mid'}`}>
-          {name}
-        </span>
+        <span className={`hero-bg-text hero-bg-text--mid ${f('hero-drift-med')}`}>{name}</span>
       </motion.div>
 
-      {/* ── Ambient glow orbs ── */}
-      <div className={`hero-glow-orb hero-glow-orb--primary ${prefersReducedMotion ? '' : 'hero-glow-pulse'}`} aria-hidden="true" />
-      <div className={`hero-glow-orb hero-glow-orb--secondary ${prefersReducedMotion ? '' : 'hero-glow-pulse-alt'}`} aria-hidden="true" />
+      {/* ── Ambient glow ── */}
+      <div className={`hero-glow hero-glow--primary ${f('hero-glow-breathe')}`} aria-hidden="true" />
+      <div className={`hero-glow hero-glow--secondary ${f('hero-glow-breathe-alt')}`} aria-hidden="true" />
 
-      {/* Floating Background Shapes */}
+      {/* ── Decorative floating circles ── */}
       {[...Array(6)].map((_, i) => (
-        <motion.div
+        <div
           key={i}
-          className="absolute rounded-full opacity-[0.07] bg-canvas"
+          className={`absolute rounded-full opacity-[0.07] bg-canvas ${f(`hero-drift-circle-${(i % 3) + 1}`)}`}
           style={{
             width: 80 + i * 70,
             height: 80 + i * 70,
             top: `${10 + i * 15}%`,
             left: `${5 + i * 16}%`,
           }}
-          animate={
-            prefersReducedMotion
-              ? {}
-              : {
-                  y: [0, -25 + i * 5, 0],
-                  rotate: [0, 180, 360],
-                  scale: [1, 1.05, 1],
-                }
-          }
-          transition={{
-            duration: 10 + i * 3,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
         />
       ))}
 
-      {/* Decorative grid dots */}
+      {/* ── Grid dots ── */}
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
@@ -136,21 +118,21 @@ const HeroSection = ({ aboutData }) => {
         }}
       />
 
-      {/* ── Content (3D-tilting wrapper) ── */}
+      {/* ── Content (mouse-tilt wrapper) ── */}
       <motion.div
-        className="hero-content-wrapper container-custom px-4 sm:px-6 lg:px-8"
+        className="hero-content-wrap container-custom px-4 sm:px-6 lg:px-8"
         style={{
           rotateX: prefersReducedMotion ? 0 : rotateX,
           rotateY: prefersReducedMotion ? 0 : rotateY,
         }}
       >
-        <div className="max-w-4xl mx-auto text-center hero-content-inner">
-          {/* Greeting badge */}
+        <div className="max-w-4xl mx-auto text-center hero-inner">
+          {/* ── Status badge ── */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="mb-4 hero-depth-layer-1"
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="mb-4"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-canvas/30 border border-canvas/50 text-timber font-body text-sm">
               <span className="w-2 h-2 rounded-full bg-ember animate-pulse" />
@@ -158,62 +140,66 @@ const HeroSection = ({ aboutData }) => {
             </span>
           </motion.div>
 
-          {/* ── FLOATING HEADLINE ── */}
-          <div className={`hero-headline-float ${prefersReducedMotion ? '' : 'hero-float-main'}`}>
-            <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="hero-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-cocoa mb-6 leading-[0.95]"
+          {/* ══════════════════════════════════════════════════════
+               FLOATING HEADLINE — the main event
+               Each word has its own sine-wave float cycle
+              ══════════════════════════════════════════════════════ */}
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="hero-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-cocoa mb-6 leading-[0.95]"
+          >
+            {/* "Hello, I'm" — floats on cycle A */}
+            <motion.span
+              className={`inline-block ${f('hero-drift-a')}`}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              {/* "Hello, I'm" floats together */}
-              <motion.span
-                className="inline-block hero-depth-layer-2"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-              >
-                Hello, I'm{' '}
-              </motion.span>
+              Hello, I'm{' '}
+            </motion.span>
 
-              {/* Each name word floats independently at different speeds */}
-              {nameWords.map((word, idx) => (
+            {/* Each name word — floats on staggered cycles */}
+            {nameWords.map((word, idx) => {
+              // Cycle through 3 different float animations
+              const floatClass = [`hero-drift-b`, `hero-drift-c`, `hero-drift-d`][idx % 3];
+              const isLast = idx === nameWords.length - 1;
+
+              return (
                 <motion.span
                   key={idx}
-                  className={`inline-block hero-word-float ${
-                    idx === nameWords.length - 1 ? 'text-gradient' : ''
-                  } ${prefersReducedMotion ? '' : `hero-float-word-${(idx % 3) + 1}`}`}
-                  initial={{ opacity: 0, y: 60 + idx * 15 }}
+                  className={`inline-block ${isLast ? 'text-gradient' : ''} ${f(floatClass)}`}
+                  initial={{ opacity: 0, y: 50 + idx * 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
                     duration: 1,
-                    delay: 0.6 + idx * 0.15,
+                    delay: 0.55 + idx * 0.12,
                     ease: [0.25, 0.46, 0.45, 0.94],
                   }}
                   style={{ position: 'relative' }}
                 >
                   {word}
-                  {idx < nameWords.length - 1 ? '\u00A0' : ''}
-                  {/* Underline on last word */}
-                  {idx === nameWords.length - 1 && (
+                  {!isLast && '\u00A0'}
+                  {isLast && (
                     <motion.span
                       className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-ember to-burlap rounded-full"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.8, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      transition={{ duration: 0.8, delay: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
                     />
                   )}
                 </motion.span>
-              ))}
-            </motion.h1>
-          </div>
+              );
+            })}
+          </motion.h1>
 
-          {/* Typewriter */}
+          {/* ── Typewriter roles ── */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
-            className="mb-8 hero-depth-layer-1"
+            transition={{ duration: 0.6, delay: 0.9 }}
+            className={`mb-8 ${f('hero-drift-e')}`}
           >
             <TypeAnimation
               sequence={sequence}
@@ -223,22 +209,22 @@ const HeroSection = ({ aboutData }) => {
             />
           </motion.div>
 
-          {/* Subtitle */}
+          {/* ── Description ── */}
           <motion.p
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-timber font-body text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed hero-depth-layer-1"
+            transition={{ duration: 0.7, delay: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="text-timber font-body text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
           >
             {description}
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* ── CTA Buttons ── */}
           <motion.div
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 hero-depth-layer-1"
+            transition={{ duration: 0.7, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Link to="/projects" className="btn-primary text-base px-8 py-4">
               View My Work
@@ -264,7 +250,7 @@ const HeroSection = ({ aboutData }) => {
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* ── Scroll indicator ── */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
         animate={{ y: [0, 10, 0] }}
