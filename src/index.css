@@ -274,121 +274,32 @@
 .hero-heading {
   text-shadow:
     0 0 80px rgba(91, 136, 178, 0.12),
-    0 0 160px rgba(91, 136, 178, 0.06);
-}
-
-
 /* ════════════════════════════════════════════════════════════════
    ROLLING GLIDE KEYFRAMES
-   One unified motion: entire content block drifts right → left
+   One unified motion: headline text drifts right → left
    Combined with subtle vertical float and scale breathing
    3-stop sine wave with ease-in-out = seamless loop
    ════════════════════════════════════════════════════════════════ */
 
-/* ── Main content glide: rolls right-to-left as one block ── */
+/* ── Headline glide: rolls right-to-left ── */
 @keyframes heroGlide {
   0%, 100% { transform: translateX(30px)  translateY(0px)  scale(1);     }
   50%      { transform: translateX(-30px) translateY(-8px) scale(1.012); }
 }
 
-/* ── Background deep layer: wider, slower, same direction ── */
-@keyframes glideBgDeep {
-  0%, 100% { transform: translateX(40px)   translateY(0px)   scale(1)    rotate(0deg);   }
-  50%      { transform: translateX(-40px)  translateY(-10px) scale(1.02) rotate(0.4deg); }
-}
-
-/* ── Mid ghost layer: slightly offset timing ── */
-@keyframes glideBgMid {
-  0%, 100% { transform: translateX(25px)   translateY(0px)  scale(1)     rotate(0deg);    }
-  50%      { transform: translateX(-25px)  translateY(6px)  scale(1.01)  rotate(-0.3deg); }
-}
-
-/* ── Glow breathing ── */
-@keyframes glowBreathe {
-  0%, 100% { opacity: 0.7;  transform: translate(-50%, -50%) scale(1);    }
-  50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.08); }
-}
-
-@keyframes glowBreatheAlt {
-  0%, 100% { opacity: 0.5;  transform: translate(-50%, -50%) scale(1);    }
-  50%      { opacity: 0.85; transform: translate(-50%, -50%) scale(1.1);  }
-}
-
-/* ── Decorative circle drifts ── */
-@keyframes driftCircle1 {
-  0%, 100% { transform: translateX(15px)  translateY(0px);   }
-  50%      { transform: translateX(-15px) translateY(-12px);  }
-}
-
-@keyframes driftCircle2 {
-  0%, 100% { transform: translateX(20px)  translateY(0px);   }
-  50%      { transform: translateX(-20px) translateY(-8px);   }
-}
-
-@keyframes driftCircle3 {
-  0%, 100% { transform: translateX(12px)  translateY(0px);   }
-  50%      { transform: translateX(-12px) translateY(-10px);  }
-}
-
-
 /* ════════════════════════════════════════════════════════════════
    ANIMATION CLASSES
    ════════════════════════════════════════════════════════════════ */
 
-/* Main content rolling glide */
+/* Headline rolling glide */
 .hero-glide {
   animation: heroGlide 10s ease-in-out infinite;
   will-change: transform;
 }
 
-/* Background text glides */
-.hero-drift-slow {
-  animation: glideBgDeep 14s ease-in-out infinite;
-  will-change: transform;
-}
-
-.hero-drift-med {
-  animation: glideBgMid 12s ease-in-out infinite;
-  animation-delay: -3s;
-  will-change: transform;
-}
-
-/* Glow breathing */
-.hero-glow-breathe {
-  animation: glowBreathe 7s ease-in-out infinite;
-}
-
-.hero-glow-breathe-alt {
-  animation: glowBreatheAlt 9s ease-in-out infinite;
-  animation-delay: -3s;
-}
-
-/* Decorative circles */
-.hero-drift-circle-1 {
-  animation: driftCircle1 18s ease-in-out infinite;
-}
-
-.hero-drift-circle-2 {
-  animation: driftCircle2 22s ease-in-out infinite;
-  animation-delay: -5s;
-}
-
-.hero-drift-circle-3 {
-  animation: driftCircle3 15s ease-in-out infinite;
-  animation-delay: -8s;
-}
-
-
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  .hero-glide,
-  .hero-drift-slow,
-  .hero-drift-med,
-  .hero-glow-breathe,
-  .hero-glow-breathe-alt,
-  .hero-drift-circle-1,
-  .hero-drift-circle-2,
-  .hero-drift-circle-3 {
+  .hero-glide {
     animation: none !important;
   }
   .hero-heading {

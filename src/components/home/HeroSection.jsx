@@ -76,7 +76,7 @@ const HeroSection = ({ aboutData }) => {
         }}
         aria-hidden="true"
       >
-        <span className={`hero-bg-text ${f('hero-drift-slow')}`}>{name}</span>
+        <span className="hero-bg-text">{name}</span>
       </motion.div>
 
       {/* ── Mid-depth ghost text ── */}
@@ -88,18 +88,18 @@ const HeroSection = ({ aboutData }) => {
         }}
         aria-hidden="true"
       >
-        <span className={`hero-bg-text hero-bg-text--mid ${f('hero-drift-med')}`}>{name}</span>
+        <span className="hero-bg-text hero-bg-text--mid">{name}</span>
       </motion.div>
 
       {/* ── Ambient glow ── */}
-      <div className={`hero-glow hero-glow--primary ${f('hero-glow-breathe')}`} aria-hidden="true" />
-      <div className={`hero-glow hero-glow--secondary ${f('hero-glow-breathe-alt')}`} aria-hidden="true" />
+      <div className="hero-glow hero-glow--primary" aria-hidden="true" />
+      <div className="hero-glow hero-glow--secondary" aria-hidden="true" />
 
       {/* ── Decorative floating circles ── */}
       {[...Array(6)].map((_, i) => (
         <div
           key={i}
-          className={`absolute rounded-full opacity-[0.07] bg-canvas ${f(`hero-drift-circle-${(i % 3) + 1}`)}`}
+          className="absolute rounded-full opacity-[0.07] bg-canvas"
           style={{
             width: 80 + i * 70,
             height: 80 + i * 70,
@@ -141,101 +141,97 @@ const HeroSection = ({ aboutData }) => {
           </motion.div>
 
           {/* ══════════════════════════════════════════════════════
-               ROLLING GLIDE — entire text block drifts right→left
-               as one unified motion, no per-word overlap
+               ROLLING GLIDE — Only applied to the Headline
               ══════════════════════════════════════════════════════ */}
-          <div className={f('hero-glide')}>
-            {/* ── Headline ── */}
-            <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="hero-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-cocoa mb-6 leading-[0.95]"
-            >
-              <motion.span
-                className="inline-block"
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-              >
-                Hello, I'm{' '}
-              </motion.span>
-
-              {nameWords.map((word, idx) => {
-                const isLast = idx === nameWords.length - 1;
-                return (
-                  <motion.span
-                    key={idx}
-                    className={`inline-block ${isLast ? 'text-gradient' : ''}`}
-                    initial={{ opacity: 0, y: 50 + idx * 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 1,
-                      delay: 0.55 + idx * 0.12,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                    }}
-                  >
-                    {word}
-                    {!isLast && '\u00A0'}
-                  </motion.span>
-                );
-              })}
-            </motion.h1>
-
-            {/* ── Typewriter roles ── */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.9 }}
-              className="mb-8"
-            >
-              <TypeAnimation
-                sequence={sequence}
-                speed={50}
-                repeat={Infinity}
-                className="text-xl sm:text-2xl lg:text-3xl text-ember font-body font-semibold"
-              />
-            </motion.div>
-
-            {/* ── Description ── */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className={`hero-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-cocoa mb-6 leading-[0.95] ${f('hero-glide')}`}
+          >
+            <motion.span
+              className="inline-block"
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="text-timber font-body text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+              transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              {description}
-            </motion.p>
+              Hello, I'm{' '}
+            </motion.span>
 
-            {/* ── CTA Buttons ── */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              <Link to="/projects" className="btn-primary text-base px-8 py-4">
-                View My Work
-                <ArrowRight size={18} />
-              </Link>
-              {resumeUrl ? (
-                <a
-                  href={resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline text-base px-8 py-4"
+            {nameWords.map((word, idx) => {
+              const isLast = idx === nameWords.length - 1;
+              return (
+                <motion.span
+                  key={idx}
+                  className={`inline-block ${isLast ? 'text-gradient' : ''}`}
+                  initial={{ opacity: 0, y: 50 + idx * 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 1,
+                    delay: 0.55 + idx * 0.12,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  }}
                 >
-                  Download Resume
-                  <Download size={18} />
-                </a>
-              ) : (
-                <button className="btn-outline text-base px-8 py-4">
-                  Download Resume
-                  <Download size={18} />
-                </button>
-              )}
-            </motion.div>
-          </div>
+                  {word}
+                  {!isLast && '\u00A0'}
+                </motion.span>
+              );
+            })}
+          </motion.h1>
+
+          {/* ── Typewriter roles ── */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+            className="mb-8"
+          >
+            <TypeAnimation
+              sequence={sequence}
+              speed={50}
+              repeat={Infinity}
+              className="text-xl sm:text-2xl lg:text-3xl text-ember font-body font-semibold"
+            />
+          </motion.div>
+
+          {/* ── Description ── */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="text-timber font-body text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+          >
+            {description}
+          </motion.p>
+
+          {/* ── CTA Buttons ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <Link to="/projects" className="btn-primary text-base px-8 py-4">
+              View My Work
+              <ArrowRight size={18} />
+            </Link>
+            {resumeUrl ? (
+              <a
+                href={resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline text-base px-8 py-4"
+              >
+                Download Resume
+                <Download size={18} />
+              </a>
+            ) : (
+              <button className="btn-outline text-base px-8 py-4">
+                Download Resume
+                <Download size={18} />
+              </button>
+            )}
+          </motion.div>
         </div>
       </motion.div>
 
