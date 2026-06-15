@@ -141,102 +141,101 @@ const HeroSection = ({ aboutData }) => {
           </motion.div>
 
           {/* ══════════════════════════════════════════════════════
-               FLOATING HEADLINE — the main event
-               Each word has its own sine-wave float cycle
+               ROLLING GLIDE — entire text block drifts right→left
+               as one unified motion, no per-word overlap
               ══════════════════════════════════════════════════════ */}
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="hero-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-cocoa mb-6 leading-[0.95]"
-          >
-            {/* "Hello, I'm" — floats on cycle A */}
-            <motion.span
-              className={`inline-block ${f('hero-drift-a')}`}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+          <div className={f('hero-glide')}>
+            {/* ── Headline ── */}
+            <motion.h1
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="hero-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-cocoa mb-6 leading-[0.95]"
             >
-              Hello, I'm{' '}
-            </motion.span>
-
-            {/* Each name word — floats on staggered cycles */}
-            {nameWords.map((word, idx) => {
-              const floatClass = [`hero-drift-b`, `hero-drift-c`, `hero-drift-d`][idx % 3];
-              const isLast = idx === nameWords.length - 1;
-
-              return (
-                <motion.span
-                  key={idx}
-                  className={`inline-block ${isLast ? 'text-gradient' : ''} ${f(floatClass)}`}
-                  initial={{ opacity: 0, y: 50 + idx * 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 1,
-                    delay: 0.55 + idx * 0.12,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                  }}
-                >
-                  {word}
-                  {!isLast && '\u00A0'}
-                </motion.span>
-              );
-            })}
-          </motion.h1>
-
-          {/* ── Typewriter roles ── */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className={`mb-8 ${f('hero-drift-e')}`}
-          >
-            <TypeAnimation
-              sequence={sequence}
-              speed={50}
-              repeat={Infinity}
-              className="text-xl sm:text-2xl lg:text-3xl text-ember font-body font-semibold"
-            />
-          </motion.div>
-
-          {/* ── Description ── */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-timber font-body text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            {description}
-          </motion.p>
-
-          {/* ── CTA Buttons ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Link to="/projects" className="btn-primary text-base px-8 py-4">
-              View My Work
-              <ArrowRight size={18} />
-            </Link>
-            {resumeUrl ? (
-              <a
-                href={resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outline text-base px-8 py-4"
+              <motion.span
+                className="inline-block"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
-                Download Resume
-                <Download size={18} />
-              </a>
-            ) : (
-              <button className="btn-outline text-base px-8 py-4">
-                Download Resume
-                <Download size={18} />
-              </button>
-            )}
-          </motion.div>
+                Hello, I'm{' '}
+              </motion.span>
+
+              {nameWords.map((word, idx) => {
+                const isLast = idx === nameWords.length - 1;
+                return (
+                  <motion.span
+                    key={idx}
+                    className={`inline-block ${isLast ? 'text-gradient' : ''}`}
+                    initial={{ opacity: 0, y: 50 + idx * 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 1,
+                      delay: 0.55 + idx * 0.12,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
+                  >
+                    {word}
+                    {!isLast && '\u00A0'}
+                  </motion.span>
+                );
+              })}
+            </motion.h1>
+
+            {/* ── Typewriter roles ── */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.9 }}
+              className="mb-8"
+            >
+              <TypeAnimation
+                sequence={sequence}
+                speed={50}
+                repeat={Infinity}
+                className="text-xl sm:text-2xl lg:text-3xl text-ember font-body font-semibold"
+              />
+            </motion.div>
+
+            {/* ── Description ── */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="text-timber font-body text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+            >
+              {description}
+            </motion.p>
+
+            {/* ── CTA Buttons ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            >
+              <Link to="/projects" className="btn-primary text-base px-8 py-4">
+                View My Work
+                <ArrowRight size={18} />
+              </Link>
+              {resumeUrl ? (
+                <a
+                  href={resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline text-base px-8 py-4"
+                >
+                  Download Resume
+                  <Download size={18} />
+                </a>
+              ) : (
+                <button className="btn-outline text-base px-8 py-4">
+                  Download Resume
+                  <Download size={18} />
+                </button>
+              )}
+            </motion.div>
+          </div>
         </div>
       </motion.div>
 
