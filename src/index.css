@@ -274,6 +274,9 @@
 .hero-heading {
   text-shadow:
     0 0 80px rgba(91, 136, 178, 0.12),
+    0 0 160px rgba(91, 136, 178, 0.06);
+}
+
 /* ════════════════════════════════════════════════════════════════
    ROLLING GLIDE KEYFRAMES
    One unified motion: headline text drifts right → left
