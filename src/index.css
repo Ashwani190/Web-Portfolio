@@ -279,51 +279,52 @@
 
 
 /* ════════════════════════════════════════════════════════════════
-   SINE-WAVE FLOAT KEYFRAMES
-   3 stops only → 0% (rest) → 50% (peak) → 100% (rest)
-   ease-in-out between each pair = smooth sine curve
+   GLIDING FLOAT KEYFRAMES
+   Primary motion: horizontal glide (20–40px)
+   Secondary: subtle vertical float + scale breathing
+   3-stop sine wave (0% → 50% → 100%) with ease-in-out
    ════════════════════════════════════════════════════════════════ */
 
-/* ── Drift A: "Hello, I'm" — gentle vertical float ── */
-@keyframes driftA {
-  0%, 100% { transform: translateY(0px)    rotate(0deg);    }
-  50%      { transform: translateY(-12px)  rotate(1.5deg);  }
+/* ── Glide A: "Hello, I'm" — drifts right then back ── */
+@keyframes glideA {
+  0%, 100% { transform: translateX(0px)   translateY(0px)   scale(1);     }
+  50%      { transform: translateX(22px)  translateY(-8px)  scale(1.01);  }
 }
 
-/* ── Drift B: first name word — slightly more travel ── */
-@keyframes driftB {
-  0%, 100% { transform: translateY(0px)    rotate(0deg);    }
-  50%      { transform: translateY(-16px)  rotate(-2deg);   }
+/* ── Glide B: first name word — wider left glide ── */
+@keyframes glideB {
+  0%, 100% { transform: translateX(0px)   translateY(0px)   scale(1);     }
+  50%      { transform: translateX(-28px) translateY(-6px)  scale(1.015); }
 }
 
-/* ── Drift C: second name word — opposite rotation ── */
-@keyframes driftC {
-  0%, 100% { transform: translateY(0px)    rotate(0deg);    }
-  50%      { transform: translateY(-10px)  rotate(2.5deg);  }
+/* ── Glide C: second name word — rightward drift ── */
+@keyframes glideC {
+  0%, 100% { transform: translateX(0px)   translateY(0px)   scale(1);     }
+  50%      { transform: translateX(24px)  translateY(-10px) scale(1.008); }
 }
 
-/* ── Drift D: third word — taller travel, gentle tilt ── */
-@keyframes driftD {
-  0%, 100% { transform: translateY(0px)    rotate(0deg);    }
-  50%      { transform: translateY(-18px)  rotate(-1.8deg); }
+/* ── Glide D: last word — longer glide left ── */
+@keyframes glideD {
+  0%, 100% { transform: translateX(0px)   translateY(0px)   scale(1);     }
+  50%      { transform: translateX(-32px) translateY(-7px)  scale(1.018); }
 }
 
-/* ── Drift E: typewriter row — very subtle float ── */
-@keyframes driftE {
-  0%, 100% { transform: translateY(0px);                    }
-  50%      { transform: translateY(-8px);                   }
+/* ── Glide E: typewriter row — gentle right drift ── */
+@keyframes glideE {
+  0%, 100% { transform: translateX(0px)  translateY(0px);                  }
+  50%      { transform: translateX(16px) translateY(-5px);                 }
 }
 
-/* ── Background text: slow wide drift with scale ── */
-@keyframes driftBgSlow {
-  0%, 100% { transform: translateY(0px)  translateX(0px)  scale(1)     rotate(0deg);   }
-  50%      { transform: translateY(-20px) translateX(8px) scale(1.015) rotate(0.8deg); }
+/* ── Background deep layer: wide slow glide ── */
+@keyframes glideBgDeep {
+  0%, 100% { transform: translateX(0px)   translateY(0px)   scale(1)     rotate(0deg);   }
+  50%      { transform: translateX(35px)  translateY(-12px) scale(1.02)  rotate(0.5deg); }
 }
 
-/* ── Mid-layer text: offset from bg ── */
-@keyframes driftBgMed {
-  0%, 100% { transform: translateY(0px)   translateX(0px)   scale(1)     rotate(0deg);    }
-  50%      { transform: translateY(15px)  translateX(-6px)  scale(1.01)  rotate(-0.6deg); }
+/* ── Mid-layer ghost text: opposite direction ── */
+@keyframes glideBgMid {
+  0%, 100% { transform: translateX(0px)   translateY(0px)   scale(1)     rotate(0deg);    }
+  50%      { transform: translateX(-25px) translateY(10px)  scale(1.012) rotate(-0.4deg); }
 }
 
 /* ── Glow breathing ── */
@@ -339,67 +340,66 @@
 
 /* ── Decorative circle drifts ── */
 @keyframes driftCircle1 {
-  0%, 100% { transform: translateY(0px)   rotate(0deg);   }
-  50%      { transform: translateY(-15px) rotate(180deg);  }
+  0%, 100% { transform: translateX(0px)  translateY(0px);   }
+  50%      { transform: translateX(12px) translateY(-15px);  }
 }
 
 @keyframes driftCircle2 {
-  0%, 100% { transform: translateY(0px)   rotate(0deg);   }
-  50%      { transform: translateY(-20px) rotate(180deg);  }
+  0%, 100% { transform: translateX(0px)   translateY(0px);   }
+  50%      { transform: translateX(-18px) translateY(-10px);  }
 }
 
 @keyframes driftCircle3 {
-  0%, 100% { transform: translateY(0px)   rotate(0deg);   }
-  50%      { transform: translateY(-12px) rotate(180deg);  }
+  0%, 100% { transform: translateX(0px)  translateY(0px);   }
+  50%      { transform: translateX(10px) translateY(-12px);  }
 }
 
 
 /* ════════════════════════════════════════════════════════════════
    ANIMATION CLASSES
-   Each has a unique duration → layered parallax effect
-   All use ease-in-out for sine-wave smoothness
-   Negative delays stagger starting phases
+   Staggered durations (8–12s) + negative delays = organic layering
+   All ease-in-out for perfectly smooth sine-wave motion
    ════════════════════════════════════════════════════════════════ */
 
-/* Foreground text drifts */
+/* Foreground text glides */
 .hero-drift-a {
-  animation: driftA 8s ease-in-out infinite;
+  animation: glideA 10s ease-in-out infinite;
   will-change: transform;
 }
 
 .hero-drift-b {
-  animation: driftB 10s ease-in-out infinite;
+  animation: glideB 11s ease-in-out infinite;
   animation-delay: -3s;
   will-change: transform;
 }
 
 .hero-drift-c {
-  animation: driftC 9s ease-in-out infinite;
-  animation-delay: -5s;
+  animation: glideC 9s ease-in-out infinite;
+  animation-delay: -6s;
   will-change: transform;
 }
 
 .hero-drift-d {
-  animation: driftD 11s ease-in-out infinite;
-  animation-delay: -7s;
+  animation: glideD 12s ease-in-out infinite;
+  animation-delay: -8s;
   will-change: transform;
 }
 
 .hero-drift-e {
-  animation: driftE 10s ease-in-out infinite;
+  animation: glideE 10s ease-in-out infinite;
   animation-delay: -2s;
   will-change: transform;
 }
 
-/* Background text drifts */
+/* Background text glides */
 .hero-drift-slow {
-  animation: driftBgSlow 16s ease-in-out infinite;
+  animation: glideBgDeep 16s ease-in-out infinite;
   will-change: transform;
 }
 
 .hero-drift-med {
-  animation: driftBgMed 13s ease-in-out infinite;
-  animation-delay: -4s;
+  animation: glideBgMid 14s ease-in-out infinite;
+  animation-delay: -5s;
   will-change: transform;
 }
 

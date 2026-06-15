@@ -162,7 +162,6 @@ const HeroSection = ({ aboutData }) => {
 
             {/* Each name word — floats on staggered cycles */}
             {nameWords.map((word, idx) => {
-              // Cycle through 3 different float animations
               const floatClass = [`hero-drift-b`, `hero-drift-c`, `hero-drift-d`][idx % 3];
               const isLast = idx === nameWords.length - 1;
 
@@ -177,18 +176,9 @@ const HeroSection = ({ aboutData }) => {
                     delay: 0.55 + idx * 0.12,
                     ease: [0.25, 0.46, 0.45, 0.94],
                   }}
-                  style={{ position: 'relative' }}
                 >
                   {word}
                   {!isLast && '\u00A0'}
-                  {isLast && (
-                    <motion.span
-                      className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-ember to-burlap rounded-full"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.8, delay: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    />
-                  )}
                 </motion.span>
               );
             })}
