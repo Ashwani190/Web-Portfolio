@@ -251,6 +251,7 @@
  */
 
 .ticker-wrap {
+  --ticker-height: 2.25rem; /* exposed for navbar/layout offset */
   width: 100%;
   overflow: hidden;
   background: linear-gradient(
@@ -262,7 +263,10 @@
   );
   border-bottom: 1px solid rgba(189, 195, 199, 0.08);
   padding: 0.6rem 0;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   user-select: none;
   cursor: pointer;
   z-index: 60; /* Above the navbar (z-50) */

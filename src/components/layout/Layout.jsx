@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
       )}
       <ScrollProgress />
       <Navbar />
-      <main className="flex-1 pt-20">
+      <main className="flex-1 pt-[7.25rem]">
         {children}
       </main>
       <Footer />
