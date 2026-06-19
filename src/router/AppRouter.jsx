@@ -25,6 +25,7 @@ import ManageEducation from '../pages/admin/ManageEducation';
 import ManageAchievements from '../pages/admin/ManageAchievements';
 import ManageBlog from '../pages/admin/ManageBlog';
 import ManageSocialLinks from '../pages/admin/ManageSocialLinks';
+import ManageTicker from '../pages/admin/ManageTicker';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -52,6 +53,7 @@ const AnimatedRoutes = () => {
         <Route path="/admin/achievements" element={<ProtectedRoute><ManageAchievements /></ProtectedRoute>} />
         <Route path="/admin/blog" element={<ProtectedRoute><ManageBlog /></ProtectedRoute>} />
         <Route path="/admin/social" element={<ProtectedRoute><ManageSocialLinks /></ProtectedRoute>} />
+        <Route path="/admin/ticker" element={<ProtectedRoute><ManageTicker /></ProtectedRoute>} />
       </Routes>
     </AnimatePresence>
   );

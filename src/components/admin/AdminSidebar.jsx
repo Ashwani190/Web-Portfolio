@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LayoutDashboard, User, Code, Folder, 
   Award, GraduationCap, Trophy, FileText, 
-  Share2, LogOut, X, Menu
+  Share2, Megaphone, LogOut, X, Menu
 } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import { useIsMobile } from '../../hooks/useMediaQuery';
@@ -19,6 +19,7 @@ const sidebarLinks = [
   { path: '/admin/achievements', label: 'Achievements', icon: Trophy },
   { path: '/admin/blog', label: 'Blog Posts', icon: FileText },
   { path: '/admin/social', label: 'Social Links', icon: Share2 },
+  { path: '/admin/ticker', label: 'Ticker', icon: Megaphone },
 ];
 
 const AdminSidebar = ({ isOpen, setIsOpen }) => {

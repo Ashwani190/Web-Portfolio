@@ -9,7 +9,6 @@ import SkillsPreview from '../../components/home/SkillsPreview';
 import ProjectsPreview from '../../components/home/ProjectsPreview';
 import BlogSection from '../../components/home/BlogSection';
 import SocialLinks from '../../components/home/SocialLinks';
-import TextTicker from '../../components/home/TextTicker';
 
 const Home = () => {
   const [aboutData, setAboutData] = useState(null);
@@ -57,15 +56,6 @@ const Home = () => {
   return (
     <PageTransition>
       <HeroSection aboutData={aboutData} />
-      <TextTicker
-        items={[
-          ...(aboutData?.hero_roles
-            ? aboutData.hero_roles.split(',').map((r) => r.trim())
-            : ['Full Stack Developer', 'UI/UX Designer', 'Open Source Contributor']),
-          ...(aboutData?.hero_description ? [aboutData.hero_description] : []),
-        ]}
-        speed={35}
-      />
       <AboutSection aboutData={aboutData} stats={stats} />
       <SkillsPreview skills={skills} />
       <ProjectsPreview projects={projects} />

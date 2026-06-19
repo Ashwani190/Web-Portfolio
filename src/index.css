@@ -241,7 +241,7 @@
 /* ===== TEXT TICKER / MARQUEE ===== */
 /*
  * Architecture:
- *   - .ticker-wrap   → overflow:hidden viewport strip
+ *   - .ticker-wrap   → overflow:hidden viewport strip (sits at very top of page)
  *   - .ticker-track  → flex container holding TWO identical .ticker-strip spans
  *   - @keyframes tickerScroll slides the track left by exactly 50%
  *     (= one full strip), then resets — seamless because the clone is identical.
@@ -255,17 +255,17 @@
   overflow: hidden;
   background: linear-gradient(
     90deg,
-    rgba(44, 62, 80, 0.25) 0%,
-    rgba(19, 15, 64, 0.6) 20%,
-    rgba(19, 15, 64, 0.6) 80%,
-    rgba(44, 62, 80, 0.25) 100%
+    rgba(44, 62, 80, 0.3) 0%,
+    rgba(19, 15, 64, 0.7) 20%,
+    rgba(19, 15, 64, 0.7) 80%,
+    rgba(44, 62, 80, 0.3) 100%
   );
-  border-top: 1px solid rgba(189, 195, 199, 0.08);
   border-bottom: 1px solid rgba(189, 195, 199, 0.08);
-  padding: 1rem 0;
+  padding: 0.6rem 0;
   position: relative;
   user-select: none;
   cursor: pointer;
+  z-index: 60; /* Above the navbar (z-50) */
 }
 
 /* Soft fade masks on both edges */
@@ -302,15 +302,42 @@
 }
 
 .ticker-strip {
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
   white-space: nowrap;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
   font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  font-size: clamp(0.75rem, 1.2vw, 0.9rem);
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--timber);
-  padding-right: 0; /* strips sit flush — no double-gap */
+}
+
+.ticker-separator {
+  color: var(--ember);
+  margin: 0 0.8em;
+  font-size: 0.7em;
+  opacity: 0.7;
+}
+
+.ticker-icon {
+  width: 1em;
+  height: 1em;
+  object-fit: contain;
+  vertical-align: middle;
+  filter: grayscale(0.3) brightness(1.1);
+  transition: filter 0.3s ease;
+}
+
+.ticker-wrap:hover .ticker-icon {
+  filter: grayscale(0) brightness(1.2);
 }
 
 @keyframes tickerScroll {
