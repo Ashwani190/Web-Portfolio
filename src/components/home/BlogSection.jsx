@@ -12,7 +12,7 @@ const BlogSection = ({ posts = [] }) => {
   if (published.length === 0) return null;
 
   return (
-    <section className="section-padding bg-cocoa relative overflow-hidden">
+    <section className="section-padding bg-black relative overflow-hidden">
       {/* Decorative */}
       <div className="absolute top-0 left-0 w-80 h-80 bg-ember/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-ember/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
@@ -21,7 +21,6 @@ const BlogSection = ({ posts = [] }) => {
         <SectionHeading
           title="Latest from the Blog"
           subtitle="Thoughts, tutorials, and insights on web development."
-          light
         />
 
         <motion.div
@@ -36,8 +35,8 @@ const BlogSection = ({ posts = [] }) => {
               key={post.id}
               variants={staggerItem}
               whileHover={{ y: -6 }}
-              className="group rounded-2xl overflow-hidden bg-silk/10 backdrop-blur-sm border border-silk/10
-                       hover:bg-silk/15 transition-all duration-300"
+              className="group rounded-2xl overflow-hidden bg-white/5 backdrop-blur-sm border border-canvas/50
+                       hover:bg-white/10 transition-all duration-300"
             >
               {/* Cover Image */}
               {post.cover_image_url && (
@@ -61,18 +60,18 @@ const BlogSection = ({ posts = [] }) => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-display font-bold text-silk mb-2 group-hover:text-canvas transition-colors line-clamp-2">
+                <h3 className="text-lg font-display font-bold text-cocoa mb-2 group-hover:text-ember transition-colors line-clamp-2">
                   {post.title}
                 </h3>
 
                 {/* Excerpt */}
-                <p className="text-sm font-body text-canvas/60 mb-4 line-clamp-2">
+                <p className="text-sm font-body text-timber mb-4 line-clamp-2">
                   {post.excerpt}
                 </p>
 
                 {/* Meta */}
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3 text-xs font-body text-canvas/50">
+                  <div className="flex items-center gap-3 text-xs font-body text-timber/80">
                     <span>{formatDate(post.created_at)}</span>
                     <span className="flex items-center gap-1">
                       <Clock size={12} />

@@ -95,34 +95,22 @@ const HeroSection = ({ aboutData }) => {
                ROLLING GLIDE — Only applied to the Headline
               ══════════════════════════════════════════════════════ */}
           <h1
-            className={`hero-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-cocoa mb-6 leading-[0.95] ${f('hero-glide')}`}
+            className={`hero-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-cocoa mb-6 leading-[0.95]`}
           >
-            <motion.span
-              className="inline-block"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            >
+            <span className="inline-block">
               Hello, I'm{' '}
-            </motion.span>
+            </span>
 
             {nameWords.map((word, idx) => {
               const isLast = idx === nameWords.length - 1;
               return (
-                <motion.span
+                <span
                   key={idx}
                   className={`inline-block ${isLast ? 'text-gradient' : ''}`}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.7,
-                    delay: 0.2 + idx * 0.1,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                  }}
                 >
                   {word}
                   {!isLast && '\u00A0'}
-                </motion.span>
+                </span>
               );
             })}
           </h1>
