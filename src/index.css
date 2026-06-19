@@ -238,6 +238,97 @@
   }
 }
 
+/* ===== TEXT TICKER / MARQUEE ===== */
+/*
+ * Architecture:
+ *   - .ticker-wrap   → overflow:hidden viewport strip
+ *   - .ticker-track  → flex container holding TWO identical .ticker-strip spans
+ *   - @keyframes tickerScroll slides the track left by exactly 50%
+ *     (= one full strip), then resets — seamless because the clone is identical.
+ *   - translate3d forces GPU compositing → zero main-thread repaints.
+ *   - linear timing → perfectly constant velocity, no stutter.
+ *   - Hover pauses via animation-play-state.
+ */
+
+.ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    rgba(44, 62, 80, 0.25) 0%,
+    rgba(19, 15, 64, 0.6) 20%,
+    rgba(19, 15, 64, 0.6) 80%,
+    rgba(44, 62, 80, 0.25) 100%
+  );
+  border-top: 1px solid rgba(189, 195, 199, 0.08);
+  border-bottom: 1px solid rgba(189, 195, 199, 0.08);
+  padding: 1rem 0;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Soft fade masks on both edges */
+.ticker-wrap::before,
+.ticker-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ticker-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--silk), transparent);
+}
+
+.ticker-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--silk), transparent);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: tickerScroll var(--ticker-speed, 30s) linear infinite;
+  will-change: transform;
+}
+
+.ticker-wrap:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-strip {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--timber);
+  padding-right: 0; /* strips sit flush — no double-gap */
+}
+
+@keyframes tickerScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none !important;
+  }
+}
+
 /* ===== MARKDOWN EDITOR OVERRIDES ===== */
 .w-md-editor {
   --color-fg-default: var(--cocoa) !important;

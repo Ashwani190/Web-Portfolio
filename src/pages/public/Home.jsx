@@ -9,6 +9,7 @@ import SkillsPreview from '../../components/home/SkillsPreview';
 import ProjectsPreview from '../../components/home/ProjectsPreview';
 import BlogSection from '../../components/home/BlogSection';
 import SocialLinks from '../../components/home/SocialLinks';
+import TextTicker from '../../components/home/TextTicker';
 
 const Home = () => {
   const [aboutData, setAboutData] = useState(null);
@@ -56,6 +57,18 @@ const Home = () => {
   return (
     <PageTransition>
       <HeroSection aboutData={aboutData} />
+      <TextTicker
+        items={[
+          'Available for Freelance',
+          'UI/UX Design',
+          'Frontend Development',
+          'React & Next.js',
+          'Creative Solutions',
+          'Web Performance',
+          'Open Source',
+        ]}
+        speed={28}
+      />
       <AboutSection aboutData={aboutData} stats={stats} />
       <SkillsPreview skills={skills} />
       <ProjectsPreview projects={projects} />
