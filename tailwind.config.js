@@ -4,12 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        silk:   '#130F40',
-        canvas: '#2C3E50',
-        burlap: '#BDC3C7',
-        timber: '#A5B1C2',
-        ember:  '#95A5A6',
-        cocoa:  '#F8FAFC',
+        silk:   '#0F1115',
+        canvas: '#1A1D23',
+        card:   '#20242C',
+        burlap: '#DDE5EB',
+        timber: '#BFC5CC',
+        ember:  '#686B6C',
+        cocoa:  '#F5F5F5',
       },
       fontFamily: {
         display: ['"Playfair Display"', 'Georgia', 'serif'],

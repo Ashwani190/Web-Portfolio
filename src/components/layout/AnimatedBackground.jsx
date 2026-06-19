@@ -29,15 +29,15 @@ const AnimatedBackground = () => {
   }));
 
   return (
-    <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none bg-[#130F40]">
+    <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none bg-[#0F1115]">
       {/* ── Base Gradient Transition ── */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#130F40] via-[#1c224b] to-[#2C3E50] opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0F1115] via-[#151920] to-[#1A1D23] opacity-90" />
 
       {/* ── Ambient Glows ── */}
       <motion.div
         className="absolute w-[60vw] h-[60vw] rounded-full mix-blend-screen filter blur-[100px] opacity-30"
         style={{
-          background: 'radial-gradient(circle, rgba(44,62,80,0.8) 0%, rgba(19,15,64,0) 70%)',
+          background: 'radial-gradient(circle, rgba(26,29,35,0.8) 0%, rgba(15,17,21,0) 70%)',
           top: '-10%',
           left: '-10%',
         }}
@@ -51,7 +51,7 @@ const AnimatedBackground = () => {
       <motion.div
         className="absolute w-[50vw] h-[50vw] rounded-full mix-blend-screen filter blur-[120px] opacity-20"
         style={{
-          background: 'radial-gradient(circle, rgba(189,195,199,0.3) 0%, rgba(19,15,64,0) 70%)',
+          background: 'radial-gradient(circle, rgba(221,229,235,0.3) 0%, rgba(15,17,21,0) 70%)',
           bottom: '0%',
           right: '-5%',
         }}
@@ -73,10 +73,10 @@ const AnimatedBackground = () => {
             height: p.size,
             left: `${p.x}%`,
             top: `${p.y}%`,
-            background: `radial-gradient(circle at 30% 30%, rgba(189,195,199,${p.opacity}), rgba(189,195,199,${
+            background: `radial-gradient(circle at 30% 30%, rgba(221,229,235,${p.opacity}), rgba(221,229,235,${
               p.opacity * 0.3
             }))`,
-            boxShadow: `inset -2px -2px 6px rgba(19,15,64,0.2), 0 0 15px rgba(189,195,199,${p.opacity * 0.5})`,
+            boxShadow: `inset -2px -2px 6px rgba(15,17,21,0.2), 0 0 15px rgba(221,229,235,${p.opacity * 0.5})`,
           }}
           animate={{
             y: [0, -30 - (p.id % 20), 0],

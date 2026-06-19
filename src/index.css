@@ -3,13 +3,14 @@
 @tailwind utilities;
 
 :root {
-  /* ── Dark Luxury Palette ── */
-  --silk: #130F40;     /* Primary dark background */
-  --canvas: #2C3E50;   /* Secondary background / cards */
-  --burlap: #BDC3C7;   /* Muted accents / borders */
-  --timber: #A5B1C2;   /* Muted text */
-  --ember: #95A5A6;    /* Interactive elements / highlights */
-  --cocoa: #F8FAFC;    /* Primary text (off-white for high contrast) */
+  /* ── Dark Monochrome Palette (Black · Dove Grey · Casper) ── */
+  --silk: #0F1115;     /* Primary dark background */
+  --canvas: #1A1D23;   /* Secondary background */
+  --card: #20242C;     /* Cards / glass panels */
+  --burlap: #DDE5EB;   /* Highlight / borders (Casper-inspired) */
+  --timber: #BFC5CC;   /* Secondary text */
+  --ember: #686B6C;    /* Accent (Dove Grey) */
+  --cocoa: #F5F5F5;    /* Primary text */
 }
 
 /* ===== BASE STYLES ===== */
@@ -256,12 +257,12 @@
   overflow: hidden;
   background: linear-gradient(
     90deg,
-    rgba(44, 62, 80, 0.3) 0%,
-    rgba(19, 15, 64, 0.7) 20%,
-    rgba(19, 15, 64, 0.7) 80%,
-    rgba(44, 62, 80, 0.3) 100%
+    rgba(26, 29, 35, 0.3) 0%,
+    rgba(15, 17, 21, 0.7) 20%,
+    rgba(15, 17, 21, 0.7) 80%,
+    rgba(26, 29, 35, 0.3) 100%
   );
-  border-bottom: 1px solid rgba(189, 195, 199, 0.08);
+  border-bottom: 1px solid rgba(221, 229, 235, 0.08);
   padding: 0.6rem 0;
   position: fixed;
   top: 0;

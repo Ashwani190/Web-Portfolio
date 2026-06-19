@@ -28,7 +28,7 @@ const Achievements = () => {
       y: (Math.random() - 0.5) * 120,
       size: 3 + Math.random() * 5,
       delay: Math.random() * 0.3,
-      color: ['#5B88B2', '#B8D0E4', '#FBF9E4', '#7BA3C4'][Math.floor(Math.random() * 4)],
+      color: ['#686B6C', '#DDE5EB', '#F5F5F5', '#BFC5CC'][Math.floor(Math.random() * 4)],
     }));
   }, []);
 

@@ -7,13 +7,13 @@ const LoadingSpinner = ({ fullScreen = false, text = 'Loading...' }) => {
       <div className="relative">
         <motion.div
           className="w-12 h-12 rounded-full border-[3px] border-canvas"
-          style={{ borderTopColor: '#5B88B2' }}
+          style={{ borderTopColor: '#686B6C' }}
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
         />
         <motion.div
           className="absolute inset-1 rounded-full border-[3px] border-transparent"
-          style={{ borderBottomColor: '#B8D0E4' }}
+          style={{ borderBottomColor: '#DDE5EB' }}
           animate={{ rotate: -360 }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
         />
