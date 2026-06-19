@@ -59,15 +59,12 @@ const Home = () => {
       <HeroSection aboutData={aboutData} />
       <TextTicker
         items={[
-          'Available for Freelance',
-          'UI/UX Design',
-          'Frontend Development',
-          'React & Next.js',
-          'Creative Solutions',
-          'Web Performance',
-          'Open Source',
+          ...(aboutData?.hero_roles
+            ? aboutData.hero_roles.split(',').map((r) => r.trim())
+            : ['Full Stack Developer', 'UI/UX Designer', 'Open Source Contributor']),
+          ...(aboutData?.hero_description ? [aboutData.hero_description] : []),
         ]}
-        speed={28}
+        speed={35}
       />
       <AboutSection aboutData={aboutData} stats={stats} />
       <SkillsPreview skills={skills} />
