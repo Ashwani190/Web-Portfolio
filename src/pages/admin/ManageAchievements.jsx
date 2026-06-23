@@ -6,7 +6,7 @@ import {
   arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, useSortable
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Plus, GripVertical, Edit2, Trash2, Trophy } from 'lucide-react';
+import { Plus, GripVertical, Edit2, Trash2, Trophy, Link2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import AdminSidebar from '../../components/admin/AdminSidebar';
@@ -49,7 +49,7 @@ const ManageAchievements = () => {
   const isMobile = useIsMobile();
   
   const [formData, setFormData] = useState({
-    title: '', description: '', date: '', category: 'Award', image_url: ''
+    title: '', description: '', date: '', category: 'Award', image_url: '', link: ''
   });
 
   const categories = ['Award', 'Hackathon', 'Competition', 'Recognition'];
@@ -69,7 +69,7 @@ const ManageAchievements = () => {
 
   const handleOpenForm = (item = null) => {
     if (item) { setEditingItem(item); setFormData(item); }
-    else { setEditingItem(null); setFormData({ title: '', description: '', date: '', category: 'Award', image_url: '' }); }
+    else { setEditingItem(null); setFormData({ title: '', description: '', date: '', category: 'Award', image_url: '', link: '' }); }
     setIsFormOpen(true);
   };
 
@@ -119,6 +119,13 @@ const ManageAchievements = () => {
                       <input type="date" value={formData.date || ''} onChange={e => setFormData({...formData, date: e.target.value})} className="input-field bg-canvas" />
                       <textarea placeholder="Description" rows={3} value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} className="input-field bg-canvas" />
                       <ImageUploader label="Image" value={formData.image_url} onChange={url => setFormData({...formData, image_url: url})} path="achievements" />
+                      <div>
+                        <label className="block text-sm font-body text-timber mb-1.5">Verification Link <span className="text-burlap">(optional)</span></label>
+                        <div className="relative">
+                          <Link2 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-burlap" />
+                          <input placeholder="https://..." type="url" value={formData.link || ''} onChange={e => setFormData({...formData, link: e.target.value})} className="input-field bg-canvas pl-10" />
+                        </div>
+                      </div>
                     </form>
                   </div>
                   <div className="p-6 bg-canvas flex gap-3"><button type="submit" form="achieve-form" disabled={saving} className="btn-primary w-full">Save</button></div>

@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, Calendar, Sparkles } from 'lucide-react';
+import { Trophy, Calendar, Sparkles, X, ExternalLink } from 'lucide-react';
 import PageTransition from '../../components/shared/PageTransition';
 import Badge from '../../components/shared/Badge';
 import LoadingSpinner from '../../components/shared/LoadingSpinner';
@@ -13,6 +13,7 @@ const categories = ['All', 'Award', 'Hackathon', 'Competition', 'Recognition'];
 const Achievements = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [hoveredId, setHoveredId] = useState(null);
+  const [selectedAchievement, setSelectedAchievement] = useState(null);
   const { data: achievements, loading } = useSupabaseData('achievements', {
     orderBy: 'display_order',
   });
@@ -103,8 +104,9 @@ const Achievements = () => {
                 whileHover={{ y: -6 }}
                 onHoverStart={() => setHoveredId(achievement.id)}
                 onHoverEnd={() => setHoveredId(null)}
+                onClick={() => setSelectedAchievement(achievement)}
                 className="relative group p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-canvas/40
-                         shadow-warm-sm hover:shadow-warm-lg hover:border-ember/30 transition-all duration-300 overflow-hidden"
+                         shadow-warm-sm hover:shadow-warm-lg hover:border-ember/30 transition-all duration-300 overflow-hidden cursor-pointer"
               >
                 {/* Confetti particles on hover */}
                 <AnimatePresence>
@@ -144,13 +146,18 @@ const Achievements = () => {
                   <p className="text-sm font-body text-timber mb-3 line-clamp-3">{achievement.description}</p>
                 )}
 
-                {/* Date */}
-                {achievement.date && (
-                  <div className="flex items-center gap-1.5 text-xs font-body text-burlap">
-                    <Calendar size={12} />
-                    {formatDate(achievement.date)}
-                  </div>
-                )}
+                {/* Date + View hint */}
+                <div className="flex items-center justify-between">
+                  {achievement.date && (
+                    <div className="flex items-center gap-1.5 text-xs font-body text-burlap">
+                      <Calendar size={12} />
+                      {formatDate(achievement.date)}
+                    </div>
+                  )}
+                  <span className="text-xs font-body text-ember/60 group-hover:text-ember transition-colors">
+                    Click to view →
+                  </span>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -163,6 +170,101 @@ const Achievements = () => {
           )}
         </div>
       </section>
+
+      {/* ── Achievement Detail Modal ── */}
+      <AnimatePresence>
+        {selectedAchievement && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 bg-silk/80 backdrop-blur-sm z-50"
+              onClick={() => setSelectedAchievement(null)}
+            />
+
+            {/* Modal */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 40 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 40 }}
+              transition={{ type: 'spring', damping: 28, stiffness: 350 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 pointer-events-none"
+            >
+              <div
+                className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-card border border-canvas/50
+                           shadow-2xl pointer-events-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close button */}
+                <button
+                  onClick={() => setSelectedAchievement(null)}
+                  className="absolute top-4 right-4 z-10 p-2 rounded-full bg-silk/60 backdrop-blur-sm
+                           text-timber hover:text-cocoa hover:bg-silk/80 transition-all duration-200"
+                >
+                  <X size={20} />
+                </button>
+
+                {/* Image */}
+                {selectedAchievement.image_url && (
+                  <div className="w-full h-56 sm:h-72 overflow-hidden rounded-t-2xl bg-canvas/20">
+                    <img
+                      src={selectedAchievement.image_url}
+                      alt={selectedAchievement.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+
+                {/* Content */}
+                <div className="p-6 sm:p-8">
+                  {/* Category + Date row */}
+                  <div className="flex flex-wrap items-center gap-3 mb-4">
+                    {selectedAchievement.category && (
+                      <Badge variant="ember">{selectedAchievement.category}</Badge>
+                    )}
+                    {selectedAchievement.date && (
+                      <div className="flex items-center gap-1.5 text-sm font-body text-burlap">
+                        <Calendar size={14} />
+                        {formatDate(selectedAchievement.date)}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Title */}
+                  <h2 className="text-2xl sm:text-3xl font-display font-bold text-cocoa mb-4">
+                    {selectedAchievement.title}
+                  </h2>
+
+                  {/* Full Description */}
+                  {selectedAchievement.description && (
+                    <p className="text-base font-body text-timber leading-relaxed mb-6 whitespace-pre-line">
+                      {selectedAchievement.description}
+                    </p>
+                  )}
+
+                  {/* Verification Link */}
+                  {selectedAchievement.link && (
+                    <a
+                      href={selectedAchievement.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-ember/15 text-ember
+                               font-body font-medium text-sm border border-ember/30
+                               hover:bg-ember/25 hover:border-ember/50 transition-all duration-300 group"
+                    >
+                      <ExternalLink size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      Verify Achievement
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </PageTransition>
   );
 };
